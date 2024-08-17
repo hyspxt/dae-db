@@ -37,7 +37,7 @@ $db->close();
             <p>Email: <?php echo $user['email']; ?></p>
         </header>
     </div>
-    <script src="script.js"></script>
+    <script src="../scripts/script.js"></script>
 </body>
 
 </html>
