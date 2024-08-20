@@ -1,9 +1,9 @@
 <?php
 // Connessione al database SQLite
-$db = new SQLite3('../../new.db');
+$db = new SQLite3('../../dae.db');
 
 // Esecuzione di una query per recuperare un dato
-$result = $db->query('SELECT * FROM users LIMIT 1');
+$result = $db->query('SELECT * FROM Paziente WHERE CodFiscale = "RSSMRA85M01H501Z"');
 $user = $result->fetchArray(SQLITE3_ASSOC);
 
 // Chiusura della connessione al database
@@ -32,9 +32,13 @@ $db->close();
     </div>
     <div class="content">
         <header>
-            <h1>User Data</h1>
-            <p>Username: <?php echo $user['username']; ?></p>
-            <p>Email: <?php echo $user['email']; ?></p>
+            <h1>Esempio di paziente: </h1>
+            <p>Codice Fiscale : <?php echo $user['CodFiscale']; ?></p>
+            <p>Nome : <?php echo $user['Nome']; ?></p>
+            <p>Cognome: <?php echo $user['Cognome']; ?></p>
+            <p>Sesso: <?php echo $user['Sesso']; ?></p>
+            <p>Etá: <?php echo $user['Eta']; ?></p>
+            <p>Condizioni mediche rilevanti: <?php echo $user['CondMediche']; ?></p>
         </header>
     </div>
     <script src="../scripts/script.js"></script>
