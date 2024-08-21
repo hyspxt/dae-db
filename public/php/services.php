@@ -58,6 +58,39 @@ if (isset($_POST['InsertStrumentoSoccorso'])) {
     $db->exec("INSERT INTO StrumentoSoccorso (ID, Tipologia, CAP, Via, Civico, Revisione) VALUES ('$ID', '$Tipologia', '$CAP', '$Via', '$Civico', '$Revisione')");
 }
 
+//inserisci una nuova chiamata
+if (isset($_POST['InsertChiamata'])) {
+    $PazienteChiamata = $_POST['PazienteChiamata'];
+    $OperatoreChiamata = $_POST['OperatoreChiamata'];
+    $Data = $_POST['Data'];
+    $Ora = $_POST['Ora'];
+    $CAP = $_POST['CAP'];
+    $Via = $_POST['Via'];
+    $Civico = $_POST['Civico'];
+    $db->exec("INSERT INTO Chiamata (Paziente, Operatore, Data, Ora, CAP, Via, Civico) VALUES ('$PazienteChiamata', '$OperatoreChiamata', '$Data', '$Ora', '$CAP', '$Via', '$Civico')");
+}
+
+//inserisci una nuova Segnalazione
+if (isset($_POST['InsertSegnalazione'])) {
+    $OperatoreSegnalazione = $_POST['OperatoreSegnalazione'];
+    $SoccorritoreSegnalazione = $_POST['SoccorritoreSegnalazione'];
+    $MezzoSoccorsoSegnalazione = $_POST['MezzoSoccorsoSegnalazione'];
+    $Data = $_POST['Data'];
+    $Ora = $_POST['Ora'];
+    $Priorita = $_POST['Priorita'];
+    $db->exec("INSERT INTO Segnalazione (Operatore, Soccorritore, MezzoSoccorso, Data, Ora, Priorita) VALUES ('$OperatoreSegnalazione', '$SoccorritoreSegnalazione', '$MezzoSoccorsoSegnalazione', '$Data', '$Ora', '$Priorita')");
+}
+
+//inserisci una nuova manovra di soccorso
+if (isset($_POST['InsertManovraSoccorso'])) {
+    $OperatoreManovra = $_POST['OperatoreManovra'];
+    $SoccorritoreManovra = $_POST['SoccorritoreManovra'];
+    $MezzoSoccorsoManovra = $_POST['MezzoSoccorsoManovra'];
+    $Tipologia = $_POST['Tipologia'];
+    $cIdentificativo = $_POST['cIdentificativo'];
+    $db->exec("INSERT INTO ManovraSoccorso (Operatore, Soccorritore, MezzoSoccorso, Tipologia, cIdentificativo) VALUES ('$OperatoreManovra', '$SoccorritoreManovra', '$MezzoSoccorsoManovra', '$Tipologia', '$cIdentificativo')");
+}
+
 // Chiusura della connessione al database
 $db->close();
 ?>
@@ -204,6 +237,68 @@ $db->close();
                 <input type="submit" class="bottone" value="Inserire un nuovo strumento di soccorso">
             </form>
         </div>
+
+        <div id="query6" class="queries">
+            <h2>inserisci una nuova chiamata</h2>
+            <form action="services.php" method="post" class="formQuery">
+                <input type="hidden" name="InsertChiamata" value="6">
+                <lable for="PazienteChiamata">Paziente:</lable>
+                <input type="text" name="PazienteChiamata" id="PazienteChiamata">
+                <lable for="OperatoreChiamata">Operatore:</lable>
+                <input type="text" name="OperatoreChiamata" id="OperatoreChiamata">
+                <lable for="Data">Data:</lable>
+                <input type="text" name="Data" id="Data">
+                <lable for="Ora">Ora:</lable>
+                <input type="text" name="Ora" id="Ora">
+                <lable for="CAP">CAP:</lable>
+                <input type="text" name="CAP" id="CAP">
+                <lable for="Via">Via:</lable>
+                <input type="text" name="Via" id="Via">
+                <lable for="Civico">Civico:</lable>
+                <input type="text" name="Civico" id="Civico">
+                <input type="submit" class="bottone" value="Inserire una nuova chiamata">
+            </form>
+        </div>
+
+        <div id="query7" class="queries">
+            <h2>inserisci una nuova segnalazione</h2>
+            <form action="services.php" method="post" class="formQuery">
+                <input type="hidden" name="InsertSegnalazione" value="7">
+                <lable for="OperatoreSegnalazione">Operatore:</lable>
+                <input type="text" name="OperatoreSegnalazione" id="OperatoreSegnalazione">
+                <lable for="SoccorritoreSegnalazione">Soccorritore:</lable>
+                <input type="text" name="SoccorritoreSegnalazione" id="SoccorritoreSegnalazione">
+                <lable for="MezzoSoccorsoSegnalazione">Mezzo di Soccorso:</lable>
+                <input type="text" name="MezzoSoccorsoSegnalazione" id="MezzoSoccorsoSegnalazione">
+                <lable for="Data">Data:</lable>
+                <input type="text" name="Data" id="Data">
+                <lable for="Ora">Ora:</lable>
+                <input type="text" name="Ora" id="Ora">
+                <lable for="Priorita">Priorità:</lable>
+                <input type="text" name="Priorita" id="Priorita">
+                <input type="submit" class="bottone" value="Inserire una nuova segnalazione">
+            </form>
+        </div>
+
+        <div id="query8" class="queries">
+            <h2>inserisci una nuova manovra di soccorso</h2>
+            <form action="services.php" method="post" class="formQuery">
+                <input type="hidden" name="InsertManovraSoccorso" value="8">
+                <lable for="OperatoreManovra">Operatore:</lable>
+                <input type="text" name="OperatoreManovra" id="OperatoreManovra">
+                <lable for="SoccorritoreManovra">Soccorritore:</lable>
+                <input type="text" name="SoccorritoreManovra" id="SoccorritoreManovra">
+                <lable for="MezzoSoccorsoManovra">Mezzo di Soccorso:</lable>
+                <input type="text" name="MezzoSoccorsoManovra" id="MezzoSoccorsoManovra">
+                <lable for="Tipologia">Tipologia:</lable>
+                <input type="text" name="Tipologia" id="Tipologia">
+                <lable for="cIdentificativo">Codice Identificativo:</lable>
+                <input type="text" name="cIdentificativo" id="cIdentificativo">
+                <input type="submit" class="bottone" value="Inserire una nuova manovra di soccorso">
+            </form>
+        </div>
+
+        
     </div>
     <script src="../js/script.js"></script>
 </body>
