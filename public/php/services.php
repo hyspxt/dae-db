@@ -91,6 +91,26 @@ if (isset($_POST['InsertManovraSoccorso'])) {
     $db->exec("INSERT INTO ManovraSoccorso (Operatore, Soccorritore, MezzoSoccorso, Tipologia, cIdentificativo) VALUES ('$OperatoreManovra', '$SoccorritoreManovra', '$MezzoSoccorsoManovra', '$Tipologia', '$cIdentificativo')");
 }
 
+// Esecuzione della query 9
+if (isset($_POST['query']) && $_POST['query'] == 9) {
+    $Data = $_POST['Data'];
+    $result = $db->query("SELECT * FROM Segnalazione WHERE Data = '$Data'");
+    $segnalazioni = [];
+    while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+        $segnalazioni[] = $row;
+    }
+}
+
+// Esecuzione della query 10
+if (isset($_POST['query']) && $_POST['query'] == 10) {
+    $Data = $_POST['Data'];
+    $result = $db->query("SELECT * FROM Chiamata WHERE Data = '$Data'");
+    $chiamate = [];
+    while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+        $chiamate[] = $row;
+    }
+}
+
 // Chiusura della connessione al database
 $db->close();
 ?>
@@ -150,7 +170,7 @@ $db->close();
                 <lable for="Sesso">Sesso:</lable>
                 <input type="text" name="Sesso" id="Sesso">
                 <lable for="Eta">Etá:</lable>
-                <input type="text" name="Eta" id="Eta">
+                <input type="number" name="Eta" id="Eta">
                 <lable for="CondMediche">Condizioni mediche rilevanti:</lable>
                 <input type="text" name="CondMediche" id="CondMediche">
                 <input type="submit" class="bottone" value="Inserisci un nuovo paziente">
@@ -170,17 +190,17 @@ $db->close();
                 <lable for="Sesso">Sesso:</lable>
                 <input type="text" name="Sesso" id="Sesso">
                 <lable for="Eta">Etá:</lable>
-                <input type="text" name="Eta" id="Eta">
+                <input type="number" name="Eta" id="Eta">
                 <lable for="CAP">CAP:</lable>
-                <input type="text" name="CAP" id="CAP">
+                <input type="number" name="CAP" id="CAP">
                 <lable for="Via">Via:</lable>
                 <input type="text" name="Via" id="Via">
                 <lable for="Civico">Civico:</lable>
-                <input type="text" name="Civico" id="Civico">
+                <input type="number" name="Civico" id="Civico">
                 <lable for="Cellulare">Cellulare:</lable>
-                <input type="text" name="Cellulare" id="Cellulare">
+                <input type="tel" name="Cellulare" id="Cellulare">
                 <lable for="Email">Email:</lable>
-                <input type="text" name="Email" id="Email">
+                <input type="email" name="Email" id="Email">
                 <lable for="Certificato">Certificato:</lable>
                 <input type="text" name="Certificato" id="Certificato">
                 <input type="submit" class="bottone" value="Inserisci un nuovo soccoritore">
@@ -200,9 +220,9 @@ $db->close();
                 <lable for="Sesso">Sesso:</lable>
                 <input type="text" name="Sesso" id="Sesso">
                 <lable for="Eta">Etá:</lable>
-                <input type="text" name="Eta" id="Eta">
+                <input type="number" name="Eta" id="Eta">
                 <lable for="LineaTel">Linea Telefonica:</lable>
-                <input type="text" name="LineaTel" id="LineaTel">
+                <input type="tel" name="LineaTel" id="LineaTel">
                 <input type="submit" class="bottone" value="Inserisci un nuovo operatore">
             </form>
         </div>
@@ -224,16 +244,17 @@ $db->close();
             <form action="services.php" method="post" class="formQuery">
                 <input type="hidden" name="InsertStrumentoSoccorso" value="5">
                 <lable for="ID">ID:</lable>
-                <input type="text" name="ID" id="ID">
+                <input type="number" name="ID" id="ID">
                 <lable for="Tipologia">Tipologia:</lable>
                 <input type="text" name="Tipologia" id="Tipologia">
                 <lable for="CAP">CAP:</lable>
-                <input type="text" name="CAP" id="CAP">
+                <input type="number" name="CAP" id="CAP">
                 <lable for="Via">Via:</lable>
                 <input type="text" name="Via" id="Via">
                 <lable for="Civico">Civico:</lable>
-                <input type="text" name="Civico" id="Civico">
-                <lable for="text" name="Revisione" id="Revisione">
+                <input type="number" name="Civico" id="Civico">
+                <lable for="Revisione">Revisione:</lable>
+                <input type="date" name="Revisione" id="Revisione">
                 <input type="submit" class="bottone" value="Inserire un nuovo strumento di soccorso">
             </form>
         </div>
@@ -247,15 +268,15 @@ $db->close();
                 <lable for="OperatoreChiamata">Operatore:</lable>
                 <input type="text" name="OperatoreChiamata" id="OperatoreChiamata">
                 <lable for="Data">Data:</lable>
-                <input type="text" name="Data" id="Data">
+                <input type="date" name="Data" id="Data">
                 <lable for="Ora">Ora:</lable>
-                <input type="text" name="Ora" id="Ora">
+                <input type="time" name="Ora" id="Ora">
                 <lable for="CAP">CAP:</lable>
-                <input type="text" name="CAP" id="CAP">
+                <input type="number" name="CAP" id="CAP">
                 <lable for="Via">Via:</lable>
                 <input type="text" name="Via" id="Via">
                 <lable for="Civico">Civico:</lable>
-                <input type="text" name="Civico" id="Civico">
+                <input type="number" name="Civico" id="Civico">
                 <input type="submit" class="bottone" value="Inserire una nuova chiamata">
             </form>
         </div>
@@ -271,11 +292,11 @@ $db->close();
                 <lable for="MezzoSoccorsoSegnalazione">Mezzo di Soccorso:</lable>
                 <input type="text" name="MezzoSoccorsoSegnalazione" id="MezzoSoccorsoSegnalazione">
                 <lable for="Data">Data:</lable>
-                <input type="text" name="Data" id="Data">
+                <input type="date" name="Data" id="Data">
                 <lable for="Ora">Ora:</lable>
-                <input type="text" name="Ora" id="Ora">
+                <input type="time" name="Ora" id="Ora">
                 <lable for="Priorita">Priorità:</lable>
-                <input type="text" name="Priorita" id="Priorita">
+                <input type="number" name="Priorita" id="Priorita">
                 <input type="submit" class="bottone" value="Inserire una nuova segnalazione">
             </form>
         </div>
@@ -293,12 +314,33 @@ $db->close();
                 <lable for="Tipologia">Tipologia:</lable>
                 <input type="text" name="Tipologia" id="Tipologia">
                 <lable for="cIdentificativo">Codice Identificativo:</lable>
-                <input type="text" name="cIdentificativo" id="cIdentificativo">
+                <input type="number" name="cIdentificativo" id="cIdentificativo">
                 <input type="submit" class="bottone" value="Inserire una nuova manovra di soccorso">
             </form>
         </div>
 
-        
+        <div id="query9" class="queries">
+            <h2>visualizzazione segnalazioni</h2>
+            <p>selezionare una data per visualizzare<br>le annesse segnalazioni</p>
+            <form action="services.php" method="post" class="formQuery">
+                <input type="hidden" name="query" value="9">
+                <lable for="Data">Data:</lable>
+                <input type="date" name="Data" id="Data">
+                <input type="submit" class="bottone" value="Visualizza segnalazioni">
+            </form>
+        </div>
+
+        <div id="query10" class="queries">
+            <h2>visualizzazione chiamate</h2>
+            <p>selezionare una data per visualizzare<br>le annesse chiamate</p>
+            <form action="services.php" method="post" class="formQuery">
+                <input type="hidden" name="query" value="10">
+                <lable for="Data">Data:</lable>
+                <input type="date" name="Data" id="Data">
+                <input type="submit" class="bottone" value="Visualizza chiamate">
+            </form>
+        </div>
+
     </div>
     <script src="../js/script.js"></script>
 </body>
