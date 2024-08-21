@@ -27,7 +27,7 @@ $db->close();
         <ul>
             <li><a href="../../index.html"><i class="fas fa-home"></i> Home</a></li>
             <li><a href="sample.php" class="active"><i class="fas fa-info-circle"></i> Database </a></li>
-            <li><a href="#services"><i class="fas fa-cogs"></i> Query </a></li>
+            <li><a href="services.php"><i class="fas fa-cogs"></i> Query </a></li>
         </ul>
     </div>
     <div class="content">
@@ -41,7 +41,7 @@ $db->close();
             <p>Condizioni mediche rilevanti: <?php echo $user['CondMediche']; ?></p>
         </header>
     </div>
-    <script src="../scripts/script.js"></script>
+    <script src="../js/script.js"></script>
 </body>
 
 </html>

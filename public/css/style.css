@@ -10,7 +10,7 @@ body {
     justify-content: center;
     height: 100vh;
     background-color: #f4f4f4;
-    overflow: hidden;
+    overflow: scroll;
 }
 
 .navbar {
@@ -60,14 +60,22 @@ body {
     border-radius: 20px;
 }
 
-.content {
+.content,
+.contentSample {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     height: 100vh;
     text-align: center;
     padding: 0 20px;
+}
+
+.content {
+    justify-content: center;
+}
+
+.contentSample {
+    justify-content: top;
 }
 
 header h1 {
@@ -101,4 +109,38 @@ header .subtitle {
     header .subtitle {
         font-size: 1em;
     }
+}
+
+/* Form Services */
+.formQuery {
+    display: flex;
+    flex-direction: column;
+    justify-content: top;
+    align-items: center;
+    margin-top: 20px;
+    gap: 10px;
+}
+
+.no_gap {
+    gap: 2;
+}
+
+.queries {
+    display: flex;
+    flex-direction: column;
+    justify-content: top;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.bottone {
+    padding: 5px 10px;
+    margin-top: 10px;
+    font-size: 1em;
+}
+
+.formSelezioneQ {
+    margin-top: 100px;
+    font-size: 1.7em;
+    font-weight: bold;
 }
