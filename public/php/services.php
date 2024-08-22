@@ -10,7 +10,7 @@ if (isset($_POST['insertPaziente'])) {
     $Sesso = $_POST['Sesso'];
     $Eta = $_POST['Eta'];
     $CondMediche = $_POST['CondMediche'];
-    $db->exec("INSERT INTO Paziente (CodFiscale, Nome, Cognome, Sesso, Eta, CondMediche) VALUES ('$CodFiscale', '$Nome', '$Cognome', '$Sesso', '$Eta', '$CondMediche')");
+    $db->exec("INSERT INTO Paziente (CodFiscale, Nome, Cognome, Sesso, Eta, CondMediche) VALUES ('$CodFiscale', '$Nome', '$Cognome', '$Sesso', '$Eta', '$CondMediche')");    
 }
 
 // Esecuzione inserimento di un nuovo soccoritore
@@ -191,6 +191,7 @@ $db->close();
             <li><a href="services.php" class="active"><i class="fas fa-cogs"></i> Query </a></li>
         </ul>
     </div>
+    
     <div class="contentSample">
         <form action="services.php" method="post" class="formSelezioneQ">
             <label for="query">Scegli una query:</label>
@@ -218,7 +219,7 @@ $db->close();
             <form action="services.php" method="post" class="formQuery">
                 <input type="hidden" name="insertPaziente" value="1">
                 <lable for="CodFiscale">Codice Fiscale:</lable>
-                <input type="text" name="CodFiscale" id="CodFiscale">
+                <input type="text" name="CodFiscale" id="CodFiscale" required>
                 <lable for="Nome">Nome:</lable>
                 <input type="text" name="Nome" id="Nome">
                 <lable for="Cognome">Cognome:</lable>
@@ -238,7 +239,7 @@ $db->close();
             <form action="services.php" method="post"  class="formQuery no_gap">
                 <input type="hidden" name="InsertSoccoritore" value="2">
                 <lable for="CodFiscale">Codice Fiscale:</lable>
-                <input type="text" name="CodFiscale" id="CodFiscale">
+                <input type="text" name="CodFiscale" id="CodFiscale" required>
                 <lable for="Nome">Nome:</lable>
                 <input type="text" name="Nome" id="Nome">
                 <lable for="Cognome">Cognome:</lable>
@@ -268,7 +269,7 @@ $db->close();
             <form action="services.php" method="post" class="formQuery">
                 <input type="hidden" name ="InsertOperatore" value="3">
                 <lable for="CodFiscale">Codice Fiscale:</lable>
-                <input type="text" name="CodFiscale" id="CodFiscale">
+                <input type="text" name="CodFiscale" id="CodFiscale" required>
                 <lable for="Nome">Nome:</lable>
                 <input type="text" name="Nome" id="Nome">
                 <lable for="Cognome">Cognome:</lable>
@@ -288,7 +289,7 @@ $db->close();
             <form action="services.php" method="post" class="formQuery">
                 <input type="hidden" name="InsertMezzoSoccorso" value="4">
                 <lable for="Targa">Targa:</lable>
-                <input type="text" name="Targa" id="Targa">
+                <input type="text" name="Targa" id="Targa" required>
                 <lable for="Fornitore">Fornitore:</lable>
                 <input type="text" name="Fornitore" id="Fornitore">
                 <input type="submit" class="bottone" value="Inserire un nuovo mezzo di soccorso">
@@ -300,7 +301,7 @@ $db->close();
             <form action="services.php" method="post" class="formQuery">
                 <input type="hidden" name="InsertStrumentoSoccorso" value="5">
                 <lable for="ID">ID:</lable>
-                <input type="number" name="ID" id="ID">
+                <input type="number" name="ID" id="ID" required>
                 <lable for="Tipologia">Tipologia:</lable>
                 <input type="text" name="Tipologia" id="Tipologia">
                 <lable for="CAP">CAP:</lable>
@@ -320,9 +321,9 @@ $db->close();
             <form action="services.php" method="post" class="formQuery">
                 <input type="hidden" name="InsertChiamata" value="6">
                 <lable for="PazienteChiamata">Paziente:</lable>
-                <input type="text" name="PazienteChiamata" id="PazienteChiamata">
+                <input type="text" name="PazienteChiamata" id="PazienteChiamata" required>
                 <lable for="OperatoreChiamata">Operatore:</lable>
-                <input type="text" name="OperatoreChiamata" id="OperatoreChiamata">
+                <input type="text" name="OperatoreChiamata" id="OperatoreChiamata" required>
                 <lable for="Data">Data:</lable>
                 <input type="date" name="Data" id="Data">
                 <lable for="Ora">Ora:</lable>
@@ -342,9 +343,9 @@ $db->close();
             <form action="services.php" method="post" class="formQuery">
                 <input type="hidden" name="InsertSegnalazione" value="7">
                 <lable for="OperatoreSegnalazione">Operatore:</lable>
-                <input type="text" name="OperatoreSegnalazione" id="OperatoreSegnalazione">
+                <input type="text" name="OperatoreSegnalazione" id="OperatoreSegnalazione"  required>
                 <lable for="SoccorritoreSegnalazione">Soccorritore:</lable>
-                <input type="text" name="SoccorritoreSegnalazione" id="SoccorritoreSegnalazione">
+                <input type="text" name="SoccorritoreSegnalazione" id="SoccorritoreSegnalazione"  required>
                 <lable for="MezzoSoccorsoSegnalazione">Mezzo di Soccorso:</lable>
                 <input type="text" name="MezzoSoccorsoSegnalazione" id="MezzoSoccorsoSegnalazione">
                 <lable for="Data">Data:</lable>
@@ -362,9 +363,9 @@ $db->close();
             <form action="services.php" method="post" class="formQuery">
                 <input type="hidden" name="InsertManovraSoccorso" value="8">
                 <lable for="OperatoreManovra">Operatore:</lable>
-                <input type="text" name="OperatoreManovra" id="OperatoreManovra">
+                <input type="text" name="OperatoreManovra" id="OperatoreManovra" required>
                 <lable for="SoccorritoreManovra">Soccorritore:</lable>
-                <input type="text" name="SoccorritoreManovra" id="SoccorritoreManovra">
+                <input type="text" name="SoccorritoreManovra" id="SoccorritoreManovra" required>
                 <lable for="MezzoSoccorsoManovra">Mezzo di Soccorso:</lable>
                 <input type="text" name="MezzoSoccorsoManovra" id="MezzoSoccorsoManovra">
                 <lable for="Tipologia">Tipologia:</lable>
@@ -381,7 +382,7 @@ $db->close();
             <form action="services.php" method="post" class="formQuery">
                 <input type="hidden" name="query" value="9">
                 <lable for="Data">Data:</lable>
-                <input type="date" name="Data" id="Data">
+                <input type="date" name="Data" id="Data" required>
                 <input type="submit" class="bottone" value="Visualizza segnalazioni">
             </form>
         </div>
@@ -392,7 +393,7 @@ $db->close();
             <form action="services.php" method="post" class="formQuery">
                 <input type="hidden" name="query" value="10">
                 <lable for="Data">Data:</lable>
-                <input type="date" name="Data" id="Data">
+                <input type="date" name="Data" id="Data" required>
                 <input type="submit" class="bottone" value="Visualizza chiamate">
             </form>
         </div>
@@ -419,7 +420,7 @@ $db->close();
             <form action="services.php" method="post" class="formQuery">
                 <input type="hidden" name="query" value="13">
                 <lable for="Soccorritore">Soccorritore:</lable>
-                <input type="text" name="Soccorritore" id="Soccorritore">
+                <input type="text" name="Soccorritore" id="Soccorritore" required>
                 <input type="submit" class="bottone" value="Visualizza chiamate ricevute">
             </form>
         </div>
@@ -435,7 +436,7 @@ $db->close();
             <form action="services.php" method="post" class="formQuery">
                 <input type="hidden" name="query" value="15">
                 <lable for="Fornitore">Fornitore:</lable>
-                <input type="text" name="Fornitore" id="Fornitore">
+                <input type="text" name="Fornitore" id="Fornitore" required>
                 <input type="submit" class="bottone" value="Visualizza mezzi di trasporto">
             </form>
         </div>
@@ -446,7 +447,7 @@ $db->close();
             <form action="services.php" method="post" class="formQuery">
                 <input type="hidden" name="query" value="16">
                 <lable for="Tipologia">Tipologia:</lable>
-                <input type="text" name="Tipologia" id="Tipologia">
+                <input type="text" name="Tipologia" id="Tipologia" required>
                 <input type="submit" class="bottone" value="Visualizza manovre di soccorso">
             </form>
         </div>

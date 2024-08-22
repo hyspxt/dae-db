@@ -35,6 +35,16 @@ function dataOdierna() {
     document.getElementById('dataOdierna').textContent = dataCompleta;
 }
 
+//Funzione per visualizzare gli allert
+function mostraAlert(risultato) {
+    if(risultato) {
+        alert("Operazione completata con successo!");
+    }
+    else if (!risultato) {
+        alert("Errore nell'esecuzione della query.");
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const links = document.querySelectorAll('.navbar ul li a');
 
