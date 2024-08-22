@@ -10,7 +10,23 @@ if (isset($_POST['insertPaziente'])) {
     $Sesso = $_POST['Sesso'];
     $Eta = $_POST['Eta'];
     $CondMediche = $_POST['CondMediche'];
-    $db->exec("INSERT INTO Paziente (CodFiscale, Nome, Cognome, Sesso, Eta, CondMediche) VALUES ('$CodFiscale', '$Nome', '$Cognome', '$Sesso', '$Eta', '$CondMediche')");    
+
+    if ($CodFiscale && $Nome && $Cognome && $Sesso && $Eta) {
+        $stmt = $db->prepare("INSERT INTO Paziente (CodFiscale, Nome, Cognome, Sesso, Eta, CondMediche) VALUES (:CodFiscale, :Nome, :Cognome, :Sesso, :Eta, :CondMediche)");
+
+        $stmt->bindParam(':CodFiscale', $CodFiscale);
+        $stmt->bindParam(':Nome', $Nome);
+        $stmt->bindParam(':Cognome', $Cognome);
+        $stmt->bindParam(':Sesso', $Sesso);
+        $stmt->bindParam(':Eta', $Eta);
+        $stmt->bindParam(':CondMediche', $CondMediche);
+
+        if ($stmt->execute())
+            echo "<script> mostraAlert(true); </script>";
+         else 
+            echo "<script> mostraAlert(false); </script>";
+    }
+        
 }
 
 // Esecuzione inserimento di un nuovo soccoritore
@@ -26,7 +42,27 @@ if (isset($_POST['InsertSoccoritore'])) {
     $Cellulare = $_POST['Cellulare'];
     $Email = $_POST['Email'];
     $Certificato = $_POST['Certificato'];
-    $db->exec("INSERT INTO Soccoritore (CodFiscale, Nome, Cognome, Sesso, Eta, CAP, Via, Civico, Cellulare, Email, Certificato) VALUES ('$CodFiscale', '$Nome', '$Cognome', '$Sesso', '$Eta', '$CAP', '$Via', '$Civico', '$Cellulare', '$Email', '$Certificato')");
+
+    if($CodFiscale && $Nome && $Cognome && $Sesso && $Eta && $CAP && $Via && $Civico && $Cellulare && $Email && $Certificato) {
+        $stmt = $db->prepare("INSERT INTO Soccorritore (CodFiscale, Nome, Cognome, Sesso, Eta, CAP, Via, Civico, Cellulare, Email, Certificato) VALUES (:CodFiscale, :Nome, :Cognome, :Sesso, :Eta, :CAP, :Via, :Civico, :Cellulare, :Email, :Certificato)");
+
+        $stmt->bindParam(':CodFiscale', $CodFiscale);
+        $stmt->bindParam(':Nome', $Nome);
+        $stmt->bindParam(':Cognome', $Cognome);
+        $stmt->bindParam(':Sesso', $Sesso);
+        $stmt->bindParam(':Eta', $Eta);
+        $stmt->bindParam(':CAP', $CAP);
+        $stmt->bindParam(':Via', $Via);
+        $stmt->bindParam(':Civico', $Civico);
+        $stmt->bindParam(':Cellulare', $Cellulare);
+        $stmt->bindParam(':Email', $Email);
+        $stmt->bindParam(':Certificato', $Certificato);
+
+        if ($stmt->execute())
+            echo "<script> mostraAlert(true); </script>";
+        else 
+            echo "<script> mostraAlert(false); </script>";
+    }
 }
 
 // Esecuzione inserimento di un nuovo operatore
@@ -37,14 +73,40 @@ if (isset($_POST['InsertOperatore'])) {
     $Sesso = $_POST['Sesso'];
     $Eta = $_POST['Eta'];
     $LineaTel = $_POST['LineaTel'];
-    $db->exec("INSERT INTO Operatore (CodFiscale, Nome, Cognome, Sesso, Eta, LineaTel) VALUES ('$CodFiscale', '$Nome', '$Cognome', '$Sesso', '$Eta', '$LineaTel')");
+
+    if($CodFiscale && $Nome && $Cognome && $Sesso && $Eta && $LineaTel) {
+        $stmt = $db->prepare("INSERT INTO Operatore (CodFiscale, Nome, Cognome, Sesso, Eta, LineaTel) VALUES (:CodFiscale, :Nome, :Cognome, :Sesso, :Eta, :LineaTel)");
+
+        $stmt->bindParam(':CodFiscale', $CodFiscale);
+        $stmt->bindParam(':Nome', $Nome);
+        $stmt->bindParam(':Cognome', $Cognome);
+        $stmt->bindParam(':Sesso', $Sesso);
+        $stmt->bindParam(':Eta', $Eta);
+        $stmt->bindParam(':LineaTel', $LineaTel);
+
+        if ($stmt->execute())
+            echo "<script> mostraAlert(true); </script>";
+        else 
+            echo "<script> mostraAlert(false); </script>";
+    }
 }
 
 // Esecuzione inserimento di un nuovo mezzo di soccorso
 if (isset($_POST['InsertMezzoSoccorso'])) {
     $Targa = $_POST['Targa'];
     $Fornitore = $_POST['Fornitore'];
-    $db->exec("INSERT INTO MezzoSoccorso (Targa, Fornitore) VALUES ('$Targa', '$Fornitore')");
+
+    if($Targa && $Fornitore) {
+        $stmt = $db->prepare("INSERT INTO MezzoSoccorso (Targa, Fornitore) VALUES (:Targa, :Fornitore)");
+
+        $stmt->bindParam(':Targa', $Targa);
+        $stmt->bindParam(':Fornitore', $Fornitore);
+
+        if ($stmt->execute())
+            echo "<script> mostraAlert(true); </script>";
+        else 
+            echo "<script> mostraAlert(false); </script>";
+    }
 }
 
 // Esecuzione inserimento di un nuovo strumento di soccorso
@@ -55,7 +117,22 @@ if (isset($_POST['InsertStrumentoSoccorso'])) {
     $Via = $_POST['Via'];
     $Civico = $_POST['Civico'];
     $Revisione = $_POST['Revisione'];
-    $db->exec("INSERT INTO StrumentoSoccorso (ID, Tipologia, CAP, Via, Civico, Revisione) VALUES ('$ID', '$Tipologia', '$CAP', '$Via', '$Civico', '$Revisione')");
+
+    if($ID && $Tipologia && $CAP && $Via && $Civico && $Revisione) {
+        $stmt = $db->prepare("INSERT INTO StrumentoSoccorso (ID, Tipologia, CAP, Via, Civico, Revisione) VALUES (:ID, :Tipologia, :CAP, :Via, :Civico, :Revisione)");
+
+        $stmt->bindParam(':ID', $ID);
+        $stmt->bindParam(':Tipologia', $Tipologia);
+        $stmt->bindParam(':CAP', $CAP);
+        $stmt->bindParam(':Via', $Via);
+        $stmt->bindParam(':Civico', $Civico);
+        $stmt->bindParam(':Revisione', $Revisione);
+
+        if ($stmt->execute())
+            echo "<script> mostraAlert(true); </script>";
+        else 
+            echo "<script> mostraAlert(false); </script>";
+    }
 }
 
 //inserisci una nuova chiamata
@@ -67,7 +144,23 @@ if (isset($_POST['InsertChiamata'])) {
     $CAP = $_POST['CAP'];
     $Via = $_POST['Via'];
     $Civico = $_POST['Civico'];
-    $db->exec("INSERT INTO Chiamata (Paziente, Operatore, Data, Ora, CAP, Via, Civico) VALUES ('$PazienteChiamata', '$OperatoreChiamata', '$Data', '$Ora', '$CAP', '$Via', '$Civico')");
+
+    if($PazienteChiamata && $OperatoreChiamata && $Data && $Ora && $CAP && $Via && $Civico) {
+        $stmt = $db->prepare("INSERT INTO Chiamata (Paziente, Operatore, Data, Ora, CAP, Via, Civico) VALUES (:Paziente, :Operatore, :Data, :Ora, :CAP, :Via, :Civico)");
+
+        $stmt->bindParam(':Paziente', $PazienteChiamata);
+        $stmt->bindParam(':Operatore', $OperatoreChiamata);
+        $stmt->bindParam(':Data', $Data);
+        $stmt->bindParam(':Ora', $Ora);
+        $stmt->bindParam(':CAP', $CAP);
+        $stmt->bindParam(':Via', $Via);
+        $stmt->bindParam(':Civico', $Civico);
+
+        if ($stmt->execute())
+            echo "<script> mostraAlert(true); </script>";
+        else 
+            echo "<script> mostraAlert(false); </script>";
+    }
 }
 
 //inserisci una nuova Segnalazione
@@ -78,7 +171,22 @@ if (isset($_POST['InsertSegnalazione'])) {
     $Data = $_POST['Data'];
     $Ora = $_POST['Ora'];
     $Priorita = $_POST['Priorita'];
-    $db->exec("INSERT INTO Segnalazione (Operatore, Soccorritore, MezzoSoccorso, Data, Ora, Priorita) VALUES ('$OperatoreSegnalazione', '$SoccorritoreSegnalazione', '$MezzoSoccorsoSegnalazione', '$Data', '$Ora', '$Priorita')");
+
+    if($OperatoreSegnalazione && $SoccorritoreSegnalazione && $MezzoSoccorsoSegnalazione && $Data && $Ora && $Priorita) {
+        $stmt = $db->prepare("INSERT INTO Segnalazione (Operatore, Soccorritore, MezzoSoccorso, Data, Ora, Priorita) VALUES (:Operatore, :Soccorritore, :MezzoSoccorso, :Data, :Ora, :Priorita)");
+
+        $stmt->bindParam(':Operatore', $OperatoreSegnalazione);
+        $stmt->bindParam(':Soccorritore', $SoccorritoreSegnalazione);
+        $stmt->bindParam(':MezzoSoccorso', $MezzoSoccorsoSegnalazione);
+        $stmt->bindParam(':Data', $Data);
+        $stmt->bindParam(':Ora', $Ora);
+        $stmt->bindParam(':Priorita', $Priorita);
+
+        if ($stmt->execute())
+            echo "<script> mostraAlert(true); </script>";
+        else 
+            echo "<script> mostraAlert(false); </script>";
+    }
 }
 
 //inserisci una nuova manovra di soccorso
@@ -88,7 +196,21 @@ if (isset($_POST['InsertManovraSoccorso'])) {
     $MezzoSoccorsoManovra = $_POST['MezzoSoccorsoManovra'];
     $Tipologia = $_POST['Tipologia'];
     $cIdentificativo = $_POST['cIdentificativo'];
-    $db->exec("INSERT INTO ManovraSoccorso (Operatore, Soccorritore, MezzoSoccorso, Tipologia, cIdentificativo) VALUES ('$OperatoreManovra', '$SoccorritoreManovra', '$MezzoSoccorsoManovra', '$Tipologia', '$cIdentificativo')");
+
+    if($OperatoreManovra && $SoccorritoreManovra && $MezzoSoccorsoManovra && $Tipologia && $cIdentificativo) {
+        $stmt = $db->prepare("INSERT INTO ManovraSoccorso (Operatore, Soccorritore, MezzoSoccorso, Tipologia, cIdentificativo) VALUES (:Operatore, :Soccorritore, :MezzoSoccorso, :Tipologia, :cIdentificativo)");
+
+        $stmt->bindParam(':Operatore', $OperatoreManovra);
+        $stmt->bindParam(':Soccorritore', $SoccorritoreManovra);
+        $stmt->bindParam(':MezzoSoccorso', $MezzoSoccorsoManovra);
+        $stmt->bindParam(':Tipologia', $Tipologia);
+        $stmt->bindParam(':cIdentificativo', $cIdentificativo);
+
+        if ($stmt->execute())
+            echo "<script> mostraAlert(true); </script>";
+        else 
+            echo "<script> mostraAlert(false); </script>";
+    }
 }
 
 // Esecuzione della query 9
@@ -221,13 +343,13 @@ $db->close();
                 <lable for="CodFiscale">Codice Fiscale:</lable>
                 <input type="text" name="CodFiscale" id="CodFiscale" required>
                 <lable for="Nome">Nome:</lable>
-                <input type="text" name="Nome" id="Nome">
+                <input type="text" name="Nome" id="Nome" required>
                 <lable for="Cognome">Cognome:</lable>
-                <input type="text" name="Cognome" id="Cognome">
+                <input type="text" name="Cognome" id="Cognome" required>
                 <lable for="Sesso">Sesso:</lable>
-                <input type="text" name="Sesso" id="Sesso">
+                <input type="text" name="Sesso" id="Sesso" required>
                 <lable for="Eta">Etá:</lable>
-                <input type="number" name="Eta" id="Eta">
+                <input type="number" name="Eta" id="Eta" required>
                 <lable for="CondMediche">Condizioni mediche rilevanti:</lable>
                 <input type="text" name="CondMediche" id="CondMediche">
                 <input type="submit" class="bottone" value="Inserisci un nuovo paziente">
@@ -241,25 +363,25 @@ $db->close();
                 <lable for="CodFiscale">Codice Fiscale:</lable>
                 <input type="text" name="CodFiscale" id="CodFiscale" required>
                 <lable for="Nome">Nome:</lable>
-                <input type="text" name="Nome" id="Nome">
+                <input type="text" name="Nome" id="Nome" required>
                 <lable for="Cognome">Cognome:</lable>
-                <input type="text" name="Cognome" id="Cognome">
+                <input type="text" name="Cognome" id="Cognome" required>
                 <lable for="Sesso">Sesso:</lable>
-                <input type="text" name="Sesso" id="Sesso">
+                <input type="text" name="Sesso" id="Sesso" required>
                 <lable for="Eta">Etá:</lable>
-                <input type="number" name="Eta" id="Eta">
+                <input type="number" name="Eta" id="Eta" required>
                 <lable for="CAP">CAP:</lable>
-                <input type="number" name="CAP" id="CAP">
+                <input type="number" name="CAP" id="CAP" required>
                 <lable for="Via">Via:</lable>
-                <input type="text" name="Via" id="Via">
+                <input type="text" name="Via" id="Via" required>
                 <lable for="Civico">Civico:</lable>
-                <input type="number" name="Civico" id="Civico">
+                <input type="number" name="Civico" id="Civico" required>
                 <lable for="Cellulare">Cellulare:</lable>
-                <input type="tel" name="Cellulare" id="Cellulare">
+                <input type="tel" name="Cellulare" id="Cellulare" required>
                 <lable for="Email">Email:</lable>
-                <input type="email" name="Email" id="Email">
+                <input type="email" name="Email" id="Email" required>
                 <lable for="Certificato">Certificato:</lable>
-                <input type="text" name="Certificato" id="Certificato">
+                <input type="text" name="Certificato" id="Certificato" required>
                 <input type="submit" class="bottone" value="Inserisci un nuovo soccoritore">
             </form>
         </div>
@@ -271,15 +393,15 @@ $db->close();
                 <lable for="CodFiscale">Codice Fiscale:</lable>
                 <input type="text" name="CodFiscale" id="CodFiscale" required>
                 <lable for="Nome">Nome:</lable>
-                <input type="text" name="Nome" id="Nome">
+                <input type="text" name="Nome" id="Nome" required>
                 <lable for="Cognome">Cognome:</lable>
-                <input type="text" name="Cognome" id="Cognome">
+                <input type="text" name="Cognome" id="Cognome" required>
                 <lable for="Sesso">Sesso:</lable>
-                <input type="text" name="Sesso" id="Sesso">
+                <input type="text" name="Sesso" id="Sesso" required>
                 <lable for="Eta">Etá:</lable>
-                <input type="number" name="Eta" id="Eta">
+                <input type="number" name="Eta" id="Eta" required>
                 <lable for="LineaTel">Linea Telefonica:</lable>
-                <input type="tel" name="LineaTel" id="LineaTel">
+                <input type="tel" name="LineaTel" id="LineaTel" required>
                 <input type="submit" class="bottone" value="Inserisci un nuovo operatore">
             </form>
         </div>
@@ -291,7 +413,7 @@ $db->close();
                 <lable for="Targa">Targa:</lable>
                 <input type="text" name="Targa" id="Targa" required>
                 <lable for="Fornitore">Fornitore:</lable>
-                <input type="text" name="Fornitore" id="Fornitore">
+                <input type="text" name="Fornitore" id="Fornitore" required>
                 <input type="submit" class="bottone" value="Inserire un nuovo mezzo di soccorso">
             </form>
         </div>
@@ -303,15 +425,15 @@ $db->close();
                 <lable for="ID">ID:</lable>
                 <input type="number" name="ID" id="ID" required>
                 <lable for="Tipologia">Tipologia:</lable>
-                <input type="text" name="Tipologia" id="Tipologia">
+                <input type="text" name="Tipologia" id="Tipologia" required>
                 <lable for="CAP">CAP:</lable>
-                <input type="number" name="CAP" id="CAP">
+                <input type="number" name="CAP" id="CAP" required>
                 <lable for="Via">Via:</lable>
-                <input type="text" name="Via" id="Via">
+                <input type="text" name="Via" id="Via" required>
                 <lable for="Civico">Civico:</lable>
-                <input type="number" name="Civico" id="Civico">
+                <input type="number" name="Civico" id="Civico" required>
                 <lable for="Revisione">Revisione:</lable>
-                <input type="date" name="Revisione" id="Revisione">
+                <input type="date" name="Revisione" id="Revisione" required>
                 <input type="submit" class="bottone" value="Inserire un nuovo strumento di soccorso">
             </form>
         </div>
@@ -325,15 +447,15 @@ $db->close();
                 <lable for="OperatoreChiamata">Operatore:</lable>
                 <input type="text" name="OperatoreChiamata" id="OperatoreChiamata" required>
                 <lable for="Data">Data:</lable>
-                <input type="date" name="Data" id="Data">
+                <input type="date" name="Data" id="Data" required>
                 <lable for="Ora">Ora:</lable>
-                <input type="time" name="Ora" id="Ora">
+                <input type="time" name="Ora" id="Ora" required>
                 <lable for="CAP">CAP:</lable>
-                <input type="number" name="CAP" id="CAP">
+                <input type="number" name="CAP" id="CAP" required>
                 <lable for="Via">Via:</lable>
-                <input type="text" name="Via" id="Via">
+                <input type="text" name="Via" id="Via" required>
                 <lable for="Civico">Civico:</lable>
-                <input type="number" name="Civico" id="Civico">
+                <input type="number" name="Civico" id="Civico" required>
                 <input type="submit" class="bottone" value="Inserire una nuova chiamata">
             </form>
         </div>
@@ -347,13 +469,13 @@ $db->close();
                 <lable for="SoccorritoreSegnalazione">Soccorritore:</lable>
                 <input type="text" name="SoccorritoreSegnalazione" id="SoccorritoreSegnalazione"  required>
                 <lable for="MezzoSoccorsoSegnalazione">Mezzo di Soccorso:</lable>
-                <input type="text" name="MezzoSoccorsoSegnalazione" id="MezzoSoccorsoSegnalazione">
+                <input type="text" name="MezzoSoccorsoSegnalazione" id="MezzoSoccorsoSegnalazione" required>
                 <lable for="Data">Data:</lable>
-                <input type="date" name="Data" id="Data">
+                <input type="date" name="Data" id="Data" required>
                 <lable for="Ora">Ora:</lable>
-                <input type="time" name="Ora" id="Ora">
+                <input type="time" name="Ora" id="Ora" required>
                 <lable for="Priorita">Priorità:</lable>
-                <input type="number" name="Priorita" id="Priorita">
+                <input type="number" name="Priorita" id="Priorita" required>
                 <input type="submit" class="bottone" value="Inserire una nuova segnalazione">
             </form>
         </div>
@@ -367,11 +489,11 @@ $db->close();
                 <lable for="SoccorritoreManovra">Soccorritore:</lable>
                 <input type="text" name="SoccorritoreManovra" id="SoccorritoreManovra" required>
                 <lable for="MezzoSoccorsoManovra">Mezzo di Soccorso:</lable>
-                <input type="text" name="MezzoSoccorsoManovra" id="MezzoSoccorsoManovra">
+                <input type="text" name="MezzoSoccorsoManovra" id="MezzoSoccorsoManovra" required>
                 <lable for="Tipologia">Tipologia:</lable>
-                <input type="text" name="Tipologia" id="Tipologia">
+                <input type="text" name="Tipologia" id="Tipologia" required>
                 <lable for="cIdentificativo">Codice Identificativo:</lable>
-                <input type="number" name="cIdentificativo" id="cIdentificativo">
+                <input type="number" name="cIdentificativo" id="cIdentificativo" required>
                 <input type="submit" class="bottone" value="Inserire una nuova manovra di soccorso">
             </form>
         </div>
