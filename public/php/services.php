@@ -111,6 +111,62 @@ if (isset($_POST['query']) && $_POST['query'] == 10) {
     }
 }
 
+// Esecuzione della query 11
+if (isset($_POST['query']) && $_POST['query'] == 11) {
+    $dataOdierna = date('Y-m-d');
+    $result = $db->query("SELECT * FROM StrumentoSoccorso WHERE Revisione < '$dataOdierna'");
+    $strumenti = [];
+    while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+        $strumenti[] = $row;
+    }
+}
+
+// Esecuzione della query 12
+if (isset($_POST['query']) && $_POST['query'] == 12) {
+    $result = $db->query("SELECT * FROM Soccorritore WHERE CodFiscale IN (SELECT Soccorritore FROM ManovraSoccorso)");
+    $soccorritori = [];
+    while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+        $soccorritori[] = $row;
+    }
+}
+
+// Esecuzione della query 13
+if (isset($_POST['query']) && $_POST['query'] == 13) {
+    $Soccorritore = $_POST['Soccorritore'];
+    $dataOdierna = date('Y-m-d');
+    $result = $db->query("SELECT * FROM Chiamata WHERE Data = '$dataOdierna' AND Operatore = '$Soccorritore'");
+    $chiamate = [];
+    while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+        $chiamate[] = $row;
+    }
+}
+
+// Esecuzione della query 14
+if (isset($_POST['query']) && $_POST['query'] == 14) {
+    $result = $db->query("SELECT AVG(Eta) AS eta_media FROM Paziente");
+    $eta_media = $result->fetchArray(SQLITE3_ASSOC)['eta_media'];
+}
+
+// Esecuzione della query 15
+if (isset($_POST['query']) && $_POST['query'] == 15) {
+    $Fornitore = $_POST['Fornitore'];
+    $result = $db->query("SELECT * FROM MezzoSoccorso WHERE Fornitore = '$Fornitore'");
+    $mezzi = [];
+    while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+        $mezzi[] = $row;
+    }
+}
+
+// Esecuzione della query 16
+if (isset($_POST['query']) && $_POST['query'] == 16) {
+    $Tipologia = $_POST['Tipologia'];
+    $result = $db->query("SELECT * FROM ManovraSoccorso WHERE Tipologia = '$Tipologia'");
+    $manovre = [];
+    while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+        $manovre[] = $row;
+    }
+}
+
 // Chiusura della connessione al database
 $db->close();
 ?>
@@ -338,6 +394,60 @@ $db->close();
                 <lable for="Data">Data:</lable>
                 <input type="date" name="Data" id="Data">
                 <input type="submit" class="bottone" value="Visualizza chiamate">
+            </form>
+        </div>
+
+        <div id="query11" class="queries">
+            <h2>Revisioni da Aggiornare</h2>
+            <p>visualizzazione dei dispositivi medici<br>la cui revisione è scaduta in data</p>
+            <h3><span id="dataOdierna"></span></h3>
+        </div>
+
+        <div id="query12" class="queries">
+            <h2>Soccorritori - Pazienti</h2>
+            <p>
+                visualizzazione dei soccorritori che sono<br>
+                stati associati ad un paziente,<br>
+                per l'esecuzione di una manovra di soccorso
+            </p>
+        </div>
+
+        <div id="query13" class="queries">
+            <h2>Chiamate ricevute</h2>
+            <p>selezionare un soccoritore per visualizzare<br>le chiamate ricevute in data</p>
+            <h3><span id="dataOdierna"></span></h3>
+            <form action="services.php" method="post" class="formQuery">
+                <input type="hidden" name="query" value="13">
+                <lable for="Soccorritore">Soccorritore:</lable>
+                <input type="text" name="Soccorritore" id="Soccorritore">
+                <input type="submit" class="bottone" value="Visualizza chiamate ricevute">
+            </form>
+        </div>
+
+        <div id="query14" class="queries">
+            <h2>Età media dei pazienti</h2>
+            <p>l'eta media dei pazienti risulta essere:</p>
+        </div>
+
+        <div id="query15" class="queries">
+            <h2>Mezzi di Soccorso</h2>
+            <p>selezionare un ente fornitore per visualizzare<br>i mezzi di soccorso forniti</p>
+            <form action="services.php" method="post" class="formQuery">
+                <input type="hidden" name="query" value="15">
+                <lable for="Fornitore">Fornitore:</lable>
+                <input type="text" name="Fornitore" id="Fornitore">
+                <input type="submit" class="bottone" value="Visualizza mezzi di trasporto">
+            </form>
+        </div>
+
+        <div id="query16" class="queries">
+            <h2>Manovre si Soccorso</h2>
+            <p>selezionare una tipologia di manovra di<br>soccorso per visualizzare quelle eseguite</p>
+            <form action="services.php" method="post" class="formQuery">
+                <input type="hidden" name="query" value="16">
+                <lable for="Tipologia">Tipologia:</lable>
+                <input type="text" name="Tipologia" id="Tipologia">
+                <input type="submit" class="bottone" value="Visualizza manovre di soccorso">
             </form>
         </div>
 
