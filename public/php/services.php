@@ -97,7 +97,7 @@ if (isset($_POST['InsertMezzoSoccorso'])) {
     $Fornitore = $_POST['Fornitore'];
 
     if($Targa && $Fornitore) {
-        $stmt = $db->prepare("INSERT INTO MezzoSoccorso (Targa, Fornitore) VALUES (:Targa, :Fornitore)");
+        $stmt = $db->prepare("INSERT INTO MezzoDiSoccorso (Targa, Fornitore) VALUES (:Targa, :Fornitore)");
 
         $stmt->bindParam(':Targa', $Targa);
         $stmt->bindParam(':Fornitore', $Fornitore);
@@ -119,7 +119,7 @@ if (isset($_POST['InsertStrumentoSoccorso'])) {
     $Revisione = $_POST['Revisione'];
 
     if($ID && $Tipologia && $CAP && $Via && $Civico && $Revisione) {
-        $stmt = $db->prepare("INSERT INTO StrumentoSoccorso (ID, Tipologia, CAP, Via, Civico, Revisione) VALUES (:ID, :Tipologia, :CAP, :Via, :Civico, :Revisione)");
+        $stmt = $db->prepare("INSERT INTO DispositivoMedico (ID, Tipologia, CAP, Via, Civico, Revisione) VALUES (:ID, :Tipologia, :CAP, :Via, :Civico, :Revisione)");
 
         $stmt->bindParam(':ID', $ID);
         $stmt->bindParam(':Tipologia', $Tipologia);
