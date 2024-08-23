@@ -16,6 +16,17 @@ function SelezioneForm() {
     }
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+    const links = document.querySelectorAll('.navbar ul li a');
+
+    links.forEach(link => {
+        link.addEventListener('click', () => {
+            links.forEach(l => l.classList.remove('active'));
+            link.classList.add('active');
+        });
+    });
+});
+
 //Funzione per stampare la data corrente
 function dataOdierna() {
     var oggi = new Date();
@@ -44,17 +55,6 @@ function mostraAlert(risultato) {
         alert("Errore nell'esecuzione della query.");
     }
 }
-
-document.addEventListener('DOMContentLoaded', () => {
-    const links = document.querySelectorAll('.navbar ul li a');
-
-    links.forEach(link => {
-        link.addEventListener('click', () => {
-            links.forEach(l => l.classList.remove('active'));
-            link.classList.add('active');
-        });
-    });
-});
 
 //Event listener di SelezioneForm 
 document.addEventListener('DOMContentLoaded', function() {
