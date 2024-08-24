@@ -2,6 +2,8 @@
 // Connessione al database SQLite
 $db = new SQLite3('../../dae.db');
 
+ob_start(); // Inizia l'output buffering
+
 // Esecuzione inserimento di un nuovo paziente
 if (isset($_POST['insertPaziente'])) {
     $CodFiscale = $_POST['CodFiscale'];
@@ -233,26 +235,6 @@ if (isset($_POST['InsertManovraSoccorso'])) {
     }
 }
 
-// Esecuzione della query 9
-if (isset($_POST['query']) && $_POST['query'] == 9) {
-    $Data = $_POST['Data'];
-    $result = $db->query("SELECT * FROM Segnalazione WHERE Data = '$Data'");
-    $segnalazioni = [];
-    while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
-        $segnalazioni[] = $row;
-    }
-}
-
-// Esecuzione della query 10
-if (isset($_POST['query']) && $_POST['query'] == 10) {
-    $Data = $_POST['Data'];
-    $result = $db->query("SELECT * FROM Chiamata WHERE Data = '$Data'");
-    $chiamate = [];
-    while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
-        $chiamate[] = $row;
-    }
-}
-
 // Esecuzione della query 11
 if (isset($_POST['query']) && $_POST['query'] == 11) {
     $dataOdierna = date('Y-m-d');
@@ -298,28 +280,7 @@ if (isset($_POST['etaMedia'])) {
 </script>";
 }
 
-// Esecuzione della query 15
-if (isset($_POST['query']) && $_POST['query'] == 15) {
-    $Fornitore = $_POST['Fornitore'];
-    $result = $db->query("SELECT * FROM MezzoSoccorso WHERE Fornitore = '$Fornitore'");
-    $mezzi = [];
-    while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
-        $mezzi[] = $row;
-    }
-}
-
-// Esecuzione della query 16
-if (isset($_POST['query']) && $_POST['query'] == 16) {
-    $Tipologia = $_POST['Tipologia'];
-    $result = $db->query("SELECT * FROM ManovraSoccorso WHERE Tipologia = '$Tipologia'");
-    $manovre = [];
-    while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
-        $manovre[] = $row;
-    }
-}
-
-// Chiusura della connessione al database
-$db->close();
+ob_end_flush();
 ?>
 
 <!DOCTYPE html>
@@ -537,23 +498,25 @@ $db->close();
         <div id="query9" class="queries">
             <h2>visualizzazione segnalazioni</h2>
             <p>selezionare una data per visualizzare<br>le annesse segnalazioni</p>
-            <form action="services.php" method="post" class="formQuery">
+            <form id="formQuery9" action="query.php" method="post" class="formQuery">
                 <input type="hidden" name="query" value="9">
-                <lable for="Data">Data:</lable>
+                <label for="Data">Data:</label>
                 <input type="date" name="Data" id="Data" required>
-                <input type="submit" class="bottone" value="Visualizza segnalazioni">
+                <button id="button9" type="submit"> Visualizza Segnalazioni</button>
             </form>
+            <div id="table9"></div>
         </div>
 
         <div id="query10" class="queries">
             <h2>visualizzazione chiamate</h2>
             <p>selezionare una data per visualizzare<br>le annesse chiamate</p>
-            <form action="services.php" method="post" class="formQuery">
+            <form id="formQuery10" action="query.php" method="post" class="formQuery">
                 <input type="hidden" name="query" value="10">
-                <lable for="Data">Data:</lable>
+                <label for="Data">Data:</label>
                 <input type="date" name="Data" id="Data" required>
-                <input type="submit" class="bottone" value="Visualizza chiamate">
+                <button id="button10" type="submit"> Visualizza chiamate</button>
             </form>
+            <div id="table10"></div>
         </div>
 
         <div id="query11" class="queries">
@@ -587,7 +550,7 @@ $db->close();
             <h2>Età media dei pazienti</h2>
             <p>l'eta media dei pazienti risulta essere:</p>
             <h3 id="media"></h3>
-            <form action="services.php" method="post" class="formQuery">
+            <form id="formQuery14" action="services.php" method="post" class="formQuery">
                 <input type="hidden" name="etaMedia" value="14">
             </form>
         </div>
@@ -595,23 +558,25 @@ $db->close();
         <div id="query15" class="queries">
             <h2>Mezzi di Soccorso</h2>
             <p>selezionare un ente fornitore per visualizzare<br>i mezzi di soccorso forniti</p>
-            <form action="services.php" method="post" class="formQuery">
+            <form id="formQuery15" action="query.php" method="post" class="formQuery">
                 <input type="hidden" name="query" value="15">
                 <lable for="Fornitore">Fornitore:</lable>
                 <input type="text" name="Fornitore" id="Fornitore" required>
-                <input type="submit" class="bottone" value="Visualizza mezzi di trasporto">
+                <button id="button15" type="submit">Visualizza mezzi di soccorso</button>
             </form>
+            <div id="table15"></div>
         </div>
 
         <div id="query16" class="queries">
             <h2>Manovre di Soccorso</h2>
             <p>selezionare una tipologia di manovra di<br>soccorso per visualizzare quelle eseguite</p>
-            <form action="services.php" method="post" class="formQuery">
+            <form id="formQuery16" action="query.php" method="post" class="formQuery">
                 <input type="hidden" name="query" value="16">
                 <lable for="Tipologia">Tipologia:</lable>
                 <input type="text" name="Tipologia" id="Tipologia" required>
-                <input type="submit" class="bottone" value="Visualizza manovre di soccorso">
+                <button id="button16" type="submit">Visualizza manovre di soccorso</button>
             </form>
+            <div id="table16"></div>
         </div>
 
     </div>
@@ -620,3 +585,7 @@ $db->close();
 
 
 </html>
+<?php
+// Chiusura della connessione al database
+$db->close();
+?>

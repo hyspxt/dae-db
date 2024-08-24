@@ -83,3 +83,41 @@ const rangeValueO = document.getElementById('rangeValueO');
 rangeInputO.addEventListener('input', function() {
     rangeValueO.textContent = document.getElementById('EtaO').value;
 });
+
+// Funzione per visualizzare la tabella della query 10
+document.addEventListener('DOMContentLoaded', function() {
+    function setupQuery(buttonId, formId, tableId) {
+        const button = document.getElementById(buttonId);
+        const form = document.getElementById(formId);
+        const table = document.getElementById(tableId);
+
+        if (button && form && table) {
+            button.addEventListener('click', function(event) {
+                event.preventDefault();
+
+                const formData = new FormData(form);
+
+                fetch('query.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.text())
+                .then(data => {
+                    table.innerHTML = data;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    table.innerHTML = '<p>An error occurred while fetching the data.</p>';
+                });
+            });
+        } else {
+            console.error(`One or more elements are missing: ${buttonId}, ${formId}, ${tableId}`);
+        }
+    }
+
+    // Setup queries
+    setupQuery('button10', 'formQuery10', 'table10');
+    setupQuery('button9', 'formQuery9', 'table9');
+    setupQuery('button15', 'formQuery15', 'table15');
+    setupQuery('button16', 'formQuery16', 'table16');
+});
