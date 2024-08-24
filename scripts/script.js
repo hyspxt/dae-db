@@ -9,9 +9,7 @@ function SelezioneForm() {
         if (forms[i].id == "query" + query) {
             forms[i].style.display = 'flex';
             if (query == 11 || query == 13)
-                dataOdierna();
-            else if(query == 14)
-                stampaMedia();
+                StampadataOdierna(query);
         } else {
             forms[i].style.display = 'none';
         }
@@ -30,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 //Funzione per stampare la data corrente
-function dataOdierna() {
+function StampadataOdierna(query) {
     var oggi = new Date();
     var giorno = oggi.getDate();
     var mese = oggi.getMonth() + 1; // I mesi sono indicizzati a partire da 0
@@ -45,13 +43,11 @@ function dataOdierna() {
     }
 
     var dataCompleta = giorno + '/' + mese + '/' + anno;
-    document.getElementById('dataOdierna').textContent = dataCompleta;
-}
+    if(query == 11)
+        document.getElementById('dataOdierna11').textContent = dataCompleta;
+    else if(query == 13)
+        document.getElementById('dataOdierna13').textContent = dataCompleta;
 
-//Funzione per calcolare e stampare la media dall'età
-function stampaEtaMedia(eta) {
-    
-    document.getElementById('media').textContent = Math.floor(eta);
 }
 
 //Event listener di SelezioneForm 
