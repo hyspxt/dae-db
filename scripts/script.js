@@ -50,12 +50,6 @@ function StampadataOdierna(query) {
 
 }
 
-//Funzione per calcolare e stampare la media dall'età
-function stampaEtaMedia(eta) {
-    
-    document.getElementById('media').textContent = Math.floor(eta);
-}
-
 //Event listener di SelezioneForm 
 document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('query').addEventListener('change', SelezioneForm);

@@ -284,19 +284,8 @@ if (isset($_POST['query']) && $_POST['query'] == 13) {
 }
 
 // Esecuzione della query 14
-if (isset($_POST['etaMedia'])) {
-    $result = $db->query("SELECT AVG(Eta) AS eta_media FROM Paziente");
-    $eta_media = $result->fetchArray(SQLITE3_ASSOC)['eta_media'];
-
-    echo "<script>
-        // Passa la variabile PHP a JavaScript
-        var etaMedia = " . json_encode($eta_media) . ";
-        // Chiama la funzione JavaScript
-        window.onload = function() {
-            stampaEtaMedia(etaMedia);
-        };
-    </script>";
-}
+$result = $db->query("SELECT AVG(Eta) AS eta_media FROM Paziente");
+$eta_media = $result->fetchArray(SQLITE3_ASSOC)['eta_media'];
 
 // Esecuzione della query 15
 if (isset($_POST['query']) && $_POST['query'] == 15) {
@@ -369,18 +358,18 @@ $db->close();
             <h2>Inserisci un nuovo paziente</h2>
             <form action="services.php" method="post" class="formQuery">
                 <input type="hidden" name="insertPaziente" value="1">
-                <lable for="CodFiscale">Codice Fiscale:</lable>
+                <label for="CodFiscale">Codice Fiscale:</label>
                 <input type="text" name="CodFiscale" id="CodFiscale" required>
-                <lable for="Nome">Nome:</lable>
+                <label for="Nome">Nome:</label>
                 <input type="text" name="Nome" id="Nome" required>
-                <lable for="Cognome">Cognome:</lable>
+                <label for="Cognome">Cognome:</label>
                 <input type="text" name="Cognome" id="Cognome" required>
-                <lable for="Sesso">Sesso:</lable>
+                <label for="Sesso">Sesso:</label>
                 <input type="text" name="Sesso" id="Sesso" required>
-                <lable for="EtaP">Etá:</lable>
+                <label for="EtaP">Etá:</label>
                 <span id="rangeValueP"></span>
                 <input type="range" min="0" max="120" name="EtaP" id="EtaP" required>
-                <lable for="CondMediche">Condizioni mediche rilevanti:</lable>
+                <label for="CondMediche">Condizioni mediche rilevanti:</label>
                 <input type="text" name="CondMediche" id="CondMediche">
                 <input type="submit" class="bottone" value="Inserisci un nuovo paziente">
             </form>
@@ -390,28 +379,28 @@ $db->close();
             <h2>Inserisci un nuovo soccoritore</h2>
             <form action="services.php" method="post"  class="formQuery no_gap">
                 <input type="hidden" name="InsertSoccoritore" value="2">
-                <lable for="CodFiscale">Codice Fiscale:</lable>
+                <label for="CodFiscale">Codice Fiscale:</label>
                 <input type="text" name="CodFiscale" id="CodFiscale" required>
-                <lable for="Nome">Nome:</lable>
+                <label for="Nome">Nome:</label>
                 <input type="text" name="Nome" id="Nome" required>
-                <lable for="Cognome">Cognome:</lable>
+                <label for="Cognome">Cognome:</label>
                 <input type="text" name="Cognome" id="Cognome" required>
-                <lable for="Sesso">Sesso:</lable>
+                <label for="Sesso">Sesso:</label>
                 <input type="text" name="Sesso" id="Sesso" required>
-                <lable for="EtaS">Etá:</lable>
+                <label for="EtaS">Etá:</label>
                 <span id="rangeValueS"></span>
                 <input type="range" min="0" max="120" name="EtaS" id="EtaS" required>
-                <lable for="CAP">CAP:</lable>
+                <label for="CAP">CAP:</label>
                 <input type="number" name="CAP" id="CAP" required>
-                <lable for="Via">Via:</lable>
+                <label for="Via">Via:</label>
                 <input type="text" name="Via" id="Via" required>
-                <lable for="Civico">Civico:</lable>
+                <label for="Civico">Civico:</label>
                 <input type="number" name="Civico" id="Civico" required>
-                <lable for="Cellulare">Cellulare:</lable>
+                <label for="Cellulare">Cellulare:</label>
                 <input type="tel" name="Cellulare" id="Cellulare" required>
-                <lable for="Email">Email:</lable>
+                <label for="Email">Email:</label>
                 <input type="email" name="Email" id="Email" required>
-                <lable for="Certificato">Certificato:</lable>
+                <label for="Certificato">Certificato:</label>
                 <input type="text" name="Certificato" id="Certificato" required>
                 <input type="submit" class="bottone" value="Inserisci un nuovo soccoritore">
             </form>
@@ -421,18 +410,18 @@ $db->close();
             <h2>Inserisci un nuovo operatore</h2>
             <form action="services.php" method="post" class="formQuery">
                 <input type="hidden" name ="InsertOperatore" value="3">
-                <lable for="CodFiscale">Codice Fiscale:</lable>
+                <label for="CodFiscale">Codice Fiscale:</label>
                 <input type="text" name="CodFiscale" id="CodFiscale" required>
-                <lable for="Nome">Nome:</lable>
+                <label for="Nome">Nome:</label>
                 <input type="text" name="Nome" id="Nome" required>
-                <lable for="Cognome">Cognome:</lable>
+                <label for="Cognome">Cognome:</label>
                 <input type="text" name="Cognome" id="Cognome" required>
-                <lable for="Sesso">Sesso:</lable>
+                <label for="Sesso">Sesso:</label>
                 <input type="text" name="Sesso" id="Sesso" required>
-                <lable for="EtaO">Etá:</lable>
+                <label for="EtaO">Etá:</label>
                 <span id="rangeValueO"></span>
                 <input type="range" min="0" max="120" name="EtaO" id="EtaO" required>
-                <lable for="LineaTel">Linea Telefonica:</lable>
+                <label for="LineaTel">Linea Telefonica:</label>
                 <input type="tel" name="LineaTel" id="LineaTel" required>
                 <input type="submit" class="bottone" value="Inserisci un nuovo operatore">
             </form>
@@ -442,13 +431,13 @@ $db->close();
             <h2>Inserisci un<br>nuovo mezzo di soccorso</h2>
             <form action="services.php" method="post" class="formQuery">
                 <input type="hidden" name="InsertMezzoSoccorso" value="4">
-                <lable for="Targa">Targa:</lable>
+                <label for="Targa">Targa:</label>
                 <input type="text" name="Targa" id="Targa" required>
-                <lable for="Fornitore">Fornitore:</lable>
+                <label for="Fornitore">Fornitore:</label>
                 <input type="text" name="Fornitore" id="Fornitore" required>
-                <lable for="OraArrivo">Ora di arrivo:</lable>
+                <label for="OraArrivo">Ora di arrivo:</label>
                 <input type="time" name="OraArrivo" id="OraArrivo" required>
-                <lable for="segnalazioneMezzo">Segnalazione:</lable>
+                <label for="segnalazioneMezzo">Segnalazione:</label>
                 <input type="text" name="segnalazioneMezzo" id="segnalazioneMezzo" required>
                 <input type="submit" class="bottone" value="Inserire un nuovo mezzo di soccorso">
             </form>
@@ -458,17 +447,17 @@ $db->close();
             <h2>Inserisci un nuovo<br>strumento di soccorso</h2>
             <form action="services.php" method="post" class="formQuery">
                 <input type="hidden" name="InsertStrumentoSoccorso" value="5">
-                <lable for="ID">ID:</lable>
+                <label for="ID">ID:</label>
                 <input type="number" name="ID" id="ID" required>
-                <lable for="Tipologia">Tipologia:</lable>
+                <label for="Tipologia">Tipologia:</label>
                 <input type="text" name="Tipologia" id="Tipologia" required>
-                <lable for="CAP">CAP:</lable>
+                <label for="CAP">CAP:</label>
                 <input type="number" name="CAP" id="CAP" required>
-                <lable for="Via">Via:</lable>
+                <label for="Via">Via:</label>
                 <input type="text" name="Via" id="Via" required>
-                <lable for="Civico">Civico:</lable>
+                <label for="Civico">Civico:</label>
                 <input type="number" name="Civico" id="Civico" required>
-                <lable for="Revisione">Revisione:</lable>
+                <label for="Revisione">Revisione:</label>
                 <input type="date" name="Revisione" id="Revisione" required>
                 <input type="submit" class="bottone" value="Inserire un nuovo strumento di soccorso">
             </form>
@@ -478,19 +467,19 @@ $db->close();
             <h2>inserisci una nuova chiamata</h2>
             <form action="services.php" method="post" class="formQuery">
                 <input type="hidden" name="InsertChiamata" value="6">
-                <lable for="PazienteChiamata">Paziente:</lable>
+                <label for="PazienteChiamata">Paziente:</label>
                 <input type="text" name="PazienteChiamata" id="PazienteChiamata" required>
-                <lable for="OperatoreChiamata">Operatore:</lable>
+                <label for="OperatoreChiamata">Operatore:</label>
                 <input type="text" name="OperatoreChiamata" id="OperatoreChiamata" required>
-                <lable for="Data">Data:</lable>
+                <label for="Data">Data:</label>
                 <input type="date" name="Data" id="Data" required>
-                <lable for="Ora">Ora:</lable>
+                <label for="Ora">Ora:</label>
                 <input type="time" name="Ora" id="Ora" required>
-                <lable for="CAP">CAP:</lable>
+                <label for="CAP">CAP:</label>
                 <input type="number" name="CAP" id="CAP" required>
-                <lable for="Via">Via:</lable>
+                <label for="Via">Via:</label>
                 <input type="text" name="Via" id="Via" required>
-                <lable for="Civico">Civico:</lable>
+                <label for="Civico">Civico:</label>
                 <input type="number" name="Civico" id="Civico" required>
                 <input type="submit" class="bottone" value="Inserire una nuova chiamata">
             </form>
@@ -500,17 +489,17 @@ $db->close();
             <h2>inserisci una nuova segnalazione</h2>
             <form action="services.php" method="post" class="formQuery">
                 <input type="hidden" name="InsertSegnalazione" value="7">
-                <lable for="OperatoreSegnalazione">Operatore:</lable>
+                <label for="OperatoreSegnalazione">Operatore:</label>
                 <input type="text" name="OperatoreSegnalazione" id="OperatoreSegnalazione"  required>
-                <lable for="SoccorritoreSegnalazione">Soccorritore:</lable>
+                <label for="SoccorritoreSegnalazione">Soccorritore:</label>
                 <input type="text" name="SoccorritoreSegnalazione" id="SoccorritoreSegnalazione"  required>
-                <lable for="MezzoSoccorsoSegnalazione">Mezzo di Soccorso:</lable>
+                <label for="MezzoSoccorsoSegnalazione">Mezzo di Soccorso:</label>
                 <input type="text" name="MezzoSoccorsoSegnalazione" id="MezzoSoccorsoSegnalazione" required>
-                <lable for="Data">Data:</lable>
+                <label for="Data">Data:</label>
                 <input type="date" name="Data" id="Data" required>
-                <lable for="Ora">Ora:</lable>
+                <label for="Ora">Ora:</label>
                 <input type="time" name="Ora" id="Ora" required>
-                <lable for="Priorita">Priorità:</lable>
+                <label for="Priorita">Priorità:</label>
                 <input type="number" name="Priorita" id="Priorita" required>
                 <input type="submit" class="bottone" value="Inserire una nuova segnalazione">
             </form>
@@ -520,15 +509,15 @@ $db->close();
             <h2>inserisci una nuova manovra di soccorso</h2>
             <form action="services.php" method="post" class="formQuery">
                 <input type="hidden" name="InsertManovraSoccorso" value="8">
-                <lable for="OperatoreManovra">Operatore:</lable>
+                <label for="OperatoreManovra">Operatore:</label>
                 <input type="text" name="OperatoreManovra" id="OperatoreManovra" required>
-                <lable for="SoccorritoreManovra">Soccorritore:</lable>
+                <label for="SoccorritoreManovra">Soccorritore:</label>
                 <input type="text" name="SoccorritoreManovra" id="SoccorritoreManovra" required>
-                <lable for="MezzoSoccorsoManovra">Mezzo di Soccorso:</lable>
+                <label for="MezzoSoccorsoManovra">Mezzo di Soccorso:</label>
                 <input type="text" name="MezzoSoccorsoManovra" id="MezzoSoccorsoManovra" required>
-                <lable for="Tipologia">Tipologia:</lable>
+                <label for="Tipologia">Tipologia:</label>
                 <input type="text" name="Tipologia" id="Tipologia" required>
-                <lable for="cIdentificativo">Codice Identificativo:</lable>
+                <label for="cIdentificativo">Codice Identificativo:</label>
                 <input type="number" name="cIdentificativo" id="cIdentificativo" required>
                 <input type="submit" class="bottone" value="Inserire una nuova manovra di soccorso">
             </form>
@@ -539,7 +528,7 @@ $db->close();
             <p>selezionare una data per visualizzare<br>le annesse segnalazioni</p>
             <form action="services.php" method="post" class="formQuery">
                 <input type="hidden" name="query" value="9">
-                <lable for="Data">Data:</lable>
+                <label for="Data">Data:</label>
                 <input type="date" name="Data" id="Data" required>
                 <input type="submit" class="bottone" value="Visualizza segnalazioni">
             </form>
@@ -550,7 +539,7 @@ $db->close();
             <p>selezionare una data per visualizzare<br>le annesse chiamate</p>
             <form action="services.php" method="post" class="formQuery">
                 <input type="hidden" name="query" value="10">
-                <lable for="Data">Data:</lable>
+                <label for="Data">Data:</label>
                 <input type="date" name="Data" id="Data" required>
                 <input type="submit" class="bottone" value="Visualizza chiamate">
             </form>
@@ -577,7 +566,7 @@ $db->close();
             <h3><span id="dataOdierna13"></span></h3>
             <form action="services.php" method="post" class="formQuery">
                 <input type="hidden" name="query" value="13">
-                <lable for="Soccorritore">Soccorritore:</lable>
+                <label for="Soccorritore">Soccorritore:</label>
                 <input type="text" name="Soccorritore" id="Soccorritore" required>
                 <input type="submit" class="bottone" value="Visualizza chiamate ricevute">
             </form>
@@ -586,10 +575,7 @@ $db->close();
         <div id="query14" class="queries">
             <h2>Età media dei pazienti</h2>
             <p>l'eta media dei pazienti risulta essere:</p>
-            <h3 id="media"></h3>
-            <form action="services.php" method="post" class="formQuery">
-                <input type="hidden" name="etaMedia" value="14">
-            </form>
+            <h3 id="media"><?php echo floor($eta_media); ?></h3>
         </div>
 
         <div id="query15" class="queries">
@@ -597,7 +583,7 @@ $db->close();
             <p>selezionare un ente fornitore per visualizzare<br>i mezzi di soccorso forniti</p>
             <form action="services.php" method="post" class="formQuery">
                 <input type="hidden" name="query" value="15">
-                <lable for="Fornitore">Fornitore:</lable>
+                <label for="Fornitore">Fornitore:</label>
                 <input type="text" name="Fornitore" id="Fornitore" required>
                 <input type="submit" class="bottone" value="Visualizza mezzi di trasporto">
             </form>
@@ -608,7 +594,7 @@ $db->close();
             <p>selezionare una tipologia di manovra di<br>soccorso per visualizzare quelle eseguite</p>
             <form action="services.php" method="post" class="formQuery">
                 <input type="hidden" name="query" value="16">
-                <lable for="Tipologia">Tipologia:</lable>
+                <label for="Tipologia">Tipologia:</label>
                 <input type="text" name="Tipologia" id="Tipologia" required>
                 <input type="submit" class="bottone" value="Visualizza manovre di soccorso">
             </form>
