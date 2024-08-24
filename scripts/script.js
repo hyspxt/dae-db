@@ -10,6 +10,8 @@ function SelezioneForm() {
             forms[i].style.display = 'flex';
             if (query == 11 || query == 13)
                 dataOdierna();
+            else if(query == 14)
+                stampaMedia();
         } else {
             forms[i].style.display = 'none';
         }
@@ -46,18 +48,38 @@ function dataOdierna() {
     document.getElementById('dataOdierna').textContent = dataCompleta;
 }
 
-//Funzione per visualizzare gli allert
-function mostraAlert(risultato) {
-    if(risultato) {
-        alert("Operazione completata con successo!");
-    }
-    else if (!risultato) {
-        alert("Errore nell'esecuzione della query.");
-    }
+//Funzione per calcolare e stampare la media dall'età
+function stampaEtaMedia(eta) {
+    
+    document.getElementById('media').textContent = Math.floor(eta);
 }
 
 //Event listener di SelezioneForm 
 document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('query').addEventListener('change', SelezioneForm);
     SelezioneForm();
+});
+
+//Funzione che segna l'età Paziente
+const rangeInput = document.getElementById('EtaP');
+const rangeValue = document.getElementById('rangeValueP');
+
+rangeInput.addEventListener('input', function() {
+    rangeValue.textContent = document.getElementById('EtaP').value;
+});
+
+//Funzione che segna l'età Soccoritore
+const rangeInputS = document.getElementById('EtaS');
+const rangeValueS = document.getElementById('rangeValueS');
+
+rangeInputS.addEventListener('input', function() {
+    rangeValueS.textContent = document.getElementById('EtaS').value;
+});
+
+//Funzione che segna l'età Operatore
+const rangeInputO = document.getElementById('EtaO');
+const rangeValueO = document.getElementById('rangeValueO');
+
+rangeInputO.addEventListener('input', function() {
+    rangeValueO.textContent = document.getElementById('EtaO').value;
 });

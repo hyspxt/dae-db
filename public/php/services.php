@@ -8,7 +8,7 @@ if (isset($_POST['insertPaziente'])) {
     $Nome = $_POST['Nome'];
     $Cognome = $_POST['Cognome'];
     $Sesso = $_POST['Sesso'];
-    $Eta = $_POST['Eta'];
+    $Eta = $_POST['EtaP'];
     $CondMediche = $_POST['CondMediche'];
 
     if ($CodFiscale && $Nome && $Cognome && $Sesso && $Eta) {
@@ -22,9 +22,11 @@ if (isset($_POST['insertPaziente'])) {
         $stmt->bindParam(':CondMediche', $CondMediche);
 
         if ($stmt->execute())
-            echo "<script> mostraAlert(true); </script>";
-         else 
-            echo "<script> mostraAlert(false); </script>";
+            $message = "Operazione completata con successo!";
+        else
+            $message = "Errore nell'inserimento del paziente!";
+
+        echo "<script type='text/javascript'>alert('$message');</script>";
     }
         
 }
@@ -35,7 +37,7 @@ if (isset($_POST['InsertSoccoritore'])) {
     $Nome = $_POST['Nome'];
     $Cognome = $_POST['Cognome'];
     $Sesso = $_POST['Sesso'];
-    $Eta = $_POST['Eta'];
+    $Eta = $_POST['EtaS'];
     $CAP = $_POST['CAP'];
     $Via = $_POST['Via'];
     $Civico = $_POST['Civico'];
@@ -59,9 +61,11 @@ if (isset($_POST['InsertSoccoritore'])) {
         $stmt->bindParam(':Certificato', $Certificato);
 
         if ($stmt->execute())
-            echo "<script> mostraAlert(true); </script>";
-        else 
-            echo "<script> mostraAlert(false); </script>";
+            $message = "Operazione completata con successo!";
+        else
+            $message = "Errore nell'inserimento del soccorritore!";
+        
+        echo "<script type='text/javascript'>alert('$message');</script>";
     }
 }
 
@@ -71,7 +75,7 @@ if (isset($_POST['InsertOperatore'])) {
     $Nome = $_POST['Nome'];
     $Cognome = $_POST['Cognome'];
     $Sesso = $_POST['Sesso'];
-    $Eta = $_POST['Eta'];
+    $Eta = $_POST['EtaO'];
     $LineaTel = $_POST['LineaTel'];
 
     if($CodFiscale && $Nome && $Cognome && $Sesso && $Eta && $LineaTel) {
@@ -85,9 +89,11 @@ if (isset($_POST['InsertOperatore'])) {
         $stmt->bindParam(':LineaTel', $LineaTel);
 
         if ($stmt->execute())
-            echo "<script> mostraAlert(true); </script>";
-        else 
-            echo "<script> mostraAlert(false); </script>";
+            $message = "Operazione completata con successo!";
+        else
+            $message = "Errore nell'inserimento dell'operatore!";
+
+        echo "<script type='text/javascript'>alert('$message');</script>";
     }
 }
 
@@ -95,17 +101,23 @@ if (isset($_POST['InsertOperatore'])) {
 if (isset($_POST['InsertMezzoSoccorso'])) {
     $Targa = $_POST['Targa'];
     $Fornitore = $_POST['Fornitore'];
+    $OraArrivo = $_POST['OraArrivo'];
+    $segnalazioneMezzo = $_POST['segnalazioneMezzo'];
 
-    if($Targa && $Fornitore) {
-        $stmt = $db->prepare("INSERT INTO MezzoDiSoccorso (Targa, Fornitore) VALUES (:Targa, :Fornitore)");
+    if($Targa && $Fornitore && $OraArrivo && $segnalazioneMezzo) {
+        $stmt = $db->prepare("INSERT INTO MezzoDiSoccorso (Targa, Fornitore, OraArrivo, Segnalazione) VALUES (:Targa, :Fornitore, :OraArrivo, :segnalazioneMezzo)");
 
         $stmt->bindParam(':Targa', $Targa);
         $stmt->bindParam(':Fornitore', $Fornitore);
+        $stmt->bindParam(':OraArrivo', $OraArrivo);
+        $stmt->bindParam(':segnalazioneMezzo', $segnalazioneMezzo);
 
         if ($stmt->execute())
-            echo "<script> mostraAlert(true); </script>";
-        else 
-            echo "<script> mostraAlert(false); </script>";
+            $message = "Operazione completata con successo!";
+        else
+            $message = "Errore nell'inserimento del mezzo di soccorso!";
+
+        echo "<script type='text/javascript'>alert('$message');</script>";
     }
 }
 
@@ -129,9 +141,11 @@ if (isset($_POST['InsertStrumentoSoccorso'])) {
         $stmt->bindParam(':Revisione', $Revisione);
 
         if ($stmt->execute())
-            echo "<script> mostraAlert(true); </script>";
-        else 
-            echo "<script> mostraAlert(false); </script>";
+            $message = "Operazione completata con successo!";
+        else
+            $message = "Errore nell'inserimento dello strumento di soccorso!";
+
+        echo "<script type='text/javascript'>alert('$message');</script>";
     }
 }
 
@@ -157,9 +171,11 @@ if (isset($_POST['InsertChiamata'])) {
         $stmt->bindParam(':Civico', $Civico);
 
         if ($stmt->execute())
-            echo "<script> mostraAlert(true); </script>";
-        else 
-            echo "<script> mostraAlert(false); </script>";
+            $message = "Operazione completata con successo!";
+        else
+            $message = "Errore nell'inserimento della chiamata!";
+
+        echo "<script type='text/javascript'>alert('$message');</script>";
     }
 }
 
@@ -183,9 +199,11 @@ if (isset($_POST['InsertSegnalazione'])) {
         $stmt->bindParam(':Priorita', $Priorita);
 
         if ($stmt->execute())
-            echo "<script> mostraAlert(true); </script>";
-        else 
-            echo "<script> mostraAlert(false); </script>";
+            $message = "Operazione completata con successo!";
+        else
+            $message = "Errore nell'inserimento della segnalazione!";
+
+        echo "<script type='text/javascript'>alert('$message');</script>";
     }
 }
 
@@ -207,9 +225,11 @@ if (isset($_POST['InsertManovraSoccorso'])) {
         $stmt->bindParam(':cIdentificativo', $cIdentificativo);
 
         if ($stmt->execute())
-            echo "<script> mostraAlert(true); </script>";
-        else 
-            echo "<script> mostraAlert(false); </script>";
+            $message = "Operazione completata con successo!";
+        else
+            $message = "Errore nell'inserimento della manovra di soccorso!";
+
+        echo "<script type='text/javascript'>alert('$message');</script>";
     }
 }
 
@@ -264,9 +284,18 @@ if (isset($_POST['query']) && $_POST['query'] == 13) {
 }
 
 // Esecuzione della query 14
-if (isset($_POST['query']) && $_POST['query'] == 14) {
+if (isset($_POST['etaMedia'])) {
     $result = $db->query("SELECT AVG(Eta) AS eta_media FROM Paziente");
     $eta_media = $result->fetchArray(SQLITE3_ASSOC)['eta_media'];
+
+    echo "<script>
+    // Passa la variabile PHP a JavaScript
+    var etaMedia = " . json_encode($eta_media) . ";
+    // Chiama la funzione JavaScript
+    window.onload = function() {
+        stampaEtaMedia(etaMedia);
+    };
+</script>";
 }
 
 // Esecuzione della query 15
@@ -348,8 +377,9 @@ $db->close();
                 <input type="text" name="Cognome" id="Cognome" required>
                 <lable for="Sesso">Sesso:</lable>
                 <input type="text" name="Sesso" id="Sesso" required>
-                <lable for="Eta">Etá:</lable>
-                <input type="number" name="Eta" id="Eta" required>
+                <lable for="EtaP">Etá:</lable>
+                <span id="rangeValueP"></span>
+                <input type="range" min="0" max="120" name="EtaP" id="EtaP" required>
                 <lable for="CondMediche">Condizioni mediche rilevanti:</lable>
                 <input type="text" name="CondMediche" id="CondMediche">
                 <input type="submit" class="bottone" value="Inserisci un nuovo paziente">
@@ -368,8 +398,9 @@ $db->close();
                 <input type="text" name="Cognome" id="Cognome" required>
                 <lable for="Sesso">Sesso:</lable>
                 <input type="text" name="Sesso" id="Sesso" required>
-                <lable for="Eta">Etá:</lable>
-                <input type="number" name="Eta" id="Eta" required>
+                <lable for="EtaS">Etá:</lable>
+                <span id="rangeValueS"></span>
+                <input type="range" min="0" max="120" name="EtaS" id="EtaS" required>
                 <lable for="CAP">CAP:</lable>
                 <input type="number" name="CAP" id="CAP" required>
                 <lable for="Via">Via:</lable>
@@ -398,8 +429,9 @@ $db->close();
                 <input type="text" name="Cognome" id="Cognome" required>
                 <lable for="Sesso">Sesso:</lable>
                 <input type="text" name="Sesso" id="Sesso" required>
-                <lable for="Eta">Etá:</lable>
-                <input type="number" name="Eta" id="Eta" required>
+                <lable for="EtaO">Etá:</lable>
+                <span id="rangeValueO"></span>
+                <input type="range" min="0" max="120" name="EtaO" id="EtaO" required>
                 <lable for="LineaTel">Linea Telefonica:</lable>
                 <input type="tel" name="LineaTel" id="LineaTel" required>
                 <input type="submit" class="bottone" value="Inserisci un nuovo operatore">
@@ -414,6 +446,10 @@ $db->close();
                 <input type="text" name="Targa" id="Targa" required>
                 <lable for="Fornitore">Fornitore:</lable>
                 <input type="text" name="Fornitore" id="Fornitore" required>
+                <lable for="OraArrivo">Ora di arrivo:</lable>
+                <input type="time" name="OraArrivo" id="OraArrivo" required>
+                <lable for="segnalazioneMezzo">Segnalazione:</lable>
+                <input type="text" name="segnalazioneMezzo" id="segnalazioneMezzo" required>
                 <input type="submit" class="bottone" value="Inserire un nuovo mezzo di soccorso">
             </form>
         </div>
@@ -550,6 +586,10 @@ $db->close();
         <div id="query14" class="queries">
             <h2>Età media dei pazienti</h2>
             <p>l'eta media dei pazienti risulta essere:</p>
+            <h3 id="media"></h3>
+            <form action="services.php" method="post" class="formQuery">
+                <input type="hidden" name="etaMedia" value="14">
+            </form>
         </div>
 
         <div id="query15" class="queries">
@@ -564,7 +604,7 @@ $db->close();
         </div>
 
         <div id="query16" class="queries">
-            <h2>Manovre si Soccorso</h2>
+            <h2>Manovre di Soccorso</h2>
             <p>selezionare una tipologia di manovra di<br>soccorso per visualizzare quelle eseguite</p>
             <form action="services.php" method="post" class="formQuery">
                 <input type="hidden" name="query" value="16">
