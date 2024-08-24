@@ -289,13 +289,13 @@ if (isset($_POST['etaMedia'])) {
     $eta_media = $result->fetchArray(SQLITE3_ASSOC)['eta_media'];
 
     echo "<script>
-    // Passa la variabile PHP a JavaScript
-    var etaMedia = " . json_encode($eta_media) . ";
-    // Chiama la funzione JavaScript
-    window.onload = function() {
-        stampaEtaMedia(etaMedia);
-    };
-</script>";
+        // Passa la variabile PHP a JavaScript
+        var etaMedia = " . json_encode($eta_media) . ";
+        // Chiama la funzione JavaScript
+        window.onload = function() {
+            stampaEtaMedia(etaMedia);
+        };
+    </script>";
 }
 
 // Esecuzione della query 15
@@ -559,7 +559,7 @@ $db->close();
         <div id="query11" class="queries">
             <h2>Revisioni da Aggiornare</h2>
             <p>visualizzazione dei dispositivi medici<br>la cui revisione è scaduta in data</p>
-            <h3><span id="dataOdierna"></span></h3>
+            <h3><span id="dataOdierna11"></span></h3>
         </div>
 
         <div id="query12" class="queries">
@@ -574,7 +574,7 @@ $db->close();
         <div id="query13" class="queries">
             <h2>Chiamate ricevute</h2>
             <p>selezionare un soccoritore per visualizzare<br>le chiamate ricevute in data</p>
-            <h3><span id="dataOdierna"></span></h3>
+            <h3><span id="dataOdierna13"></span></h3>
             <form action="services.php" method="post" class="formQuery">
                 <input type="hidden" name="query" value="13">
                 <lable for="Soccorritore">Soccorritore:</lable>
