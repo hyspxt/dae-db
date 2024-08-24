@@ -10,8 +10,6 @@ function SelezioneForm() {
             forms[i].style.display = 'flex';
             if (query == 11 || query == 13)
                 StampadataOdierna(query);
-            else if(query == 14)
-                stampaMedia();
         } else {
             forms[i].style.display = 'none';
         }
