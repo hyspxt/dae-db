@@ -61,174 +61,174 @@ $db->close();
             </select>
         </form>
         <div id="query1" class="queries">
-            <h2>Inserisci un nuovo paziente</h2>
+            <h3>Inserisci un nuovo paziente</h3>
             <form id="formQuery1" action="query.php" method="post" class="formQuery">
                 <input type="hidden" name="insertPaziente" value="1">
                 <label for="CodFiscale">Codice Fiscale:</label>
-                <input type="text" name="CodFiscale" id="CodFiscale" required>
+                <input type="text" class="form-control" name="CodFiscale" id="CodFiscale" required>
                 <label for="Nome">Nome:</label>
-                <input type="text" name="Nome" id="Nome" required>
+                <input type="text" class="form-control" name="Nome" id="Nome" required>
                 <label for="Cognome">Cognome:</label>
-                <input type="text" name="Cognome" id="Cognome" required>
+                <input type="text" class="form-control" name="Cognome" id="Cognome" required>
                 <label for="Sesso">Sesso:</label>
-                <input type="text" name="Sesso" id="Sesso" required>
+                <input type="text" class="form-control" name="Sesso" id="Sesso" required>
                 <label for="EtaP">Etá:</label>
                 <span id="rangeValueP"></span>
                 <input type="range" min="0" max="120" name="EtaP" id="EtaP" required>
                 <label for="CondMediche">Condizioni mediche rilevanti:</label>
-                <input type="text" name="CondMediche" id="CondMediche">
-                <button id="button1" type="submit"> Inserisci un nuovo paziente </button>
+                <input type="text" class="form-control" name="CondMediche" id="CondMediche">
+                <button id="button1" class="btn c" type="submit"> Inserisci un nuovo paziente </button>
             </form>
         </div>
 
         <div id="query2" class="queries">
-            <h2>Inserisci un nuovo soccoritore</h2>
+            <h3>Inserisci un nuovo soccoritore</h3>
             <form id="formQuery2" action="query.php" method="post"  class="formQuery no_gap">
                 <input type="hidden" name="InsertSoccoritore" value="2">
                 <label for="CodFiscale">Codice Fiscale:</label>
-                <input type="text" name="CodFiscale" id="CodFiscale" required>
+                <input type="text" class="form-control" name="CodFiscale" id="CodFiscale" required>
                 <label for="Nome">Nome:</label>
-                <input type="text" name="Nome" id="Nome" required>
+                <input type="text" class="form-control" name="Nome" id="Nome" required>
                 <label for="Cognome">Cognome:</label>
-                <input type="text" name="Cognome" id="Cognome" required>
+                <input type="text" class="form-control" name="Cognome" id="Cognome" required>
                 <label for="Sesso">Sesso:</label>
-                <input type="text" name="Sesso" id="Sesso" required>
+                <input type="text" class="form-control" name="Sesso" id="Sesso" required>
                 <label for="EtaS">Etá:</label>
                 <span id="rangeValueS"></span>
                 <input type="range" min="0" max="120" name="EtaS" id="EtaS" required>
                 <label for="CAP">CAP:</label>
-                <input type="number" name="CAP" id="CAP" required>
+                <input type="number" class="form-control" name="CAP" id="CAP" required>
                 <label for="Via">Via:</label>
-                <input type="text" name="Via" id="Via" required>
+                <input type="text" class="form-control" name="Via" id="Via" required>
                 <label for="Civico">Civico:</label>
-                <input type="number" name="Civico" id="Civico" required>
+                <input type="number" class="form-control" name="Civico" id="Civico" required>
                 <label for="Cellulare">Cellulare:</label>
-                <input type="tel" name="Cellulare" id="Cellulare" required>
+                <input type="tel" class="form-control" name="Cellulare" id="Cellulare" required>
                 <label for="Email">Email:</label>
-                <input type="email" name="Email" id="Email" required>
+                <input type="email" class="form-control" name="Email" id="Email" required>
                 <label for="Certificato">Certificato:</label>
-                <input type="text" name="Certificato" id="Certificato" required>
-                <button id="button2" type="submit"> Inserisci un nuovo soccorritore </button>
+                <input type="text" class="form-control" name="Certificato" id="Certificato" required>
+                <button id="button2" class="btn c" type="submit"> Inserisci un nuovo soccorritore </button>
             </form>
         </div>
 
         <div id="query3" class="queries">
-            <h2>Inserisci un nuovo operatore</h2>
+            <h3>Inserisci un nuovo operatore</h3>
             <form id="formQuery3" action="query.php" method="post" class="formQuery">
                 <input type="hidden" name ="InsertOperatore" value="3">
                 <label for="CodFiscale">Codice Fiscale:</label>
-                <input type="text" name="CodFiscale" id="CodFiscale" required>
+                <input type="text" class="form-control" name="CodFiscale" id="CodFiscale" required>
                 <label for="Nome">Nome:</label>
-                <input type="text" name="Nome" id="Nome" required>
+                <input type="text" class="form-control" name="Nome" id="Nome" required>
                 <label for="Cognome">Cognome:</label>
-                <input type="text" name="Cognome" id="Cognome" required>
+                <input type="text" class="form-control" name="Cognome" id="Cognome" required>
                 <label for="Sesso">Sesso:</label>
-                <input type="text" name="Sesso" id="Sesso" required>
+                <input type="text" class="form-control" name="Sesso" id="Sesso" required>
                 <label for="EtaO">Etá:</label>
                 <span id="rangeValueO"></span>
                 <input type="range" min="0" max="120" name="EtaO" id="EtaO" required>
                 <label for="LineaTel">Linea Telefonica:</label>
-                <input type="tel" name="LineaTel" id="LineaTel" required>
-                <button id="button3" type="submit"> Inserisci un nuovo operatore </button>
+                <input type="tel" class="form-control" name="LineaTel" id="LineaTel" required>
+                <button id="button3" class="btn c" type="submit"> Inserisci un nuovo operatore </button>
             </form>
         </div>
 
         <div id="query4" class="queries">
-            <h2>Inserisci un<br>nuovo mezzo di soccorso</h2>
+            <h3>Inserisci un<br>nuovo mezzo di soccorso</h3>
             <form id="formQuery4" action="query.php" method="post" class="formQuery">
                 <input type="hidden" name="InsertMezzoSoccorso" value="4">
                 <label for="Targa">Targa:</label>
-                <input type="text" name="Targa" id="Targa" required>
+                <input type="text" class="form-control" name="Targa" id="Targa" required>
                 <label for="Fornitore">Fornitore:</label>
-                <input type="text" name="Fornitore" id="Fornitore" required>
+                <input type="text" class="form-control" name="Fornitore" id="Fornitore" required>
                 <label for="OraArrivo">Ora di arrivo:</label>
-                <input type="time" name="OraArrivo" id="OraArrivo" required>
+                <input type="time" class="form-control" name="OraArrivo" id="OraArrivo" required>
                 <label for="segnalazioneMezzo">Segnalazione:</label>
-                <input type="text" name="segnalazioneMezzo" id="segnalazioneMezzo" required>
-                <button id="button4" type="submit"> Inserisci un nuovo mezzo di soccorso </button>
+                <input type="text" class="form-control" name="segnalazioneMezzo" id="segnalazioneMezzo" required>
+                <button id="button4" class="btn c" type="submit"> Inserisci un nuovo mezzo di soccorso </button>
             </form>
         </div>
 
         <div id="query5" class="queries">
-            <h2>Inserisci un nuovo<br>strumento di soccorso</h2>
+            <h3>Inserisci un nuovo<br>strumento di soccorso</h3>
             <form id="formQuery5" action="query.php" method="post" class="formQuery">
                 <input type="hidden" name="InsertStrumentoSoccorso" value="5">
                 <label for="ID">ID:</label>
-                <input type="number" name="ID" id="ID" required>
+                <input type="number" class="form-control" name="ID" id="ID" required>
                 <label for="Tipologia">Tipologia:</label>
-                <input type="text" name="Tipologia" id="Tipologia" required>
+                <input type="text" class="form-control" name="Tipologia" id="Tipologia" required>
                 <label for="CAP">CAP:</label>
-                <input type="number" name="CAP" id="CAP" required>
+                <input type="number" class="form-control" name="CAP" id="CAP" required>
                 <label for="Via">Via:</label>
-                <input type="text" name="Via" id="Via" required>
+                <input type="text" class="form-control" name="Via" id="Via" required>
                 <label for="Civico">Civico:</label>
-                <input type="number" name="Civico" id="Civico" required>
+                <input type="number" class="form-control" name="Civico" id="Civico" required>
                 <label for="Revisione">Revisione:</label>
-                <input type="date" name="Revisione" id="Revisione" required>
-                <button id="button5" type="submit"> Inserisci un nuovo strumento di soccorso </button>
+                <input type="date" class="form-control" name="Revisione" id="Revisione" required>
+                <button id="button5" class="btn c" type="submit"> Inserisci un nuovo strumento di soccorso </button>
             </form>
         </div>
 
         <div id="query6" class="queries">
-            <h2>inserisci una nuova chiamata</h2>
+            <h3>Inserisci una nuova chiamata</h3>
             <form id="formQuery6" action="query.php" method="post" class="formQuery">
                 <input type="hidden" name="InsertChiamata" value="6">
                 <label for="PazienteChiamata">Paziente:</label>
-                <input type="text" name="PazienteChiamata" id="PazienteChiamata" required>
+                <input type="text" class="form-control" name="PazienteChiamata" id="PazienteChiamata" required>
                 <label for="OperatoreChiamata">Operatore:</label>
-                <input type="text" name="OperatoreChiamata" id="OperatoreChiamata" required>
+                <input type="text" class="form-control" name="OperatoreChiamata" id="OperatoreChiamata" required>
                 <label for="Data">Data:</label>
-                <input type="date" name="Data" id="Data" required>
+                <input type="date" class="form-control" name="Data" id="Data" required>
                 <label for="Ora">Ora:</label>
-                <input type="time" name="Ora" id="Ora" required>
+                <input type="time" class="form-control" name="Ora" id="Ora" required>
                 <label for="CAP">CAP:</label>
-                <input type="number" name="CAP" id="CAP" required>
+                <input type="number" class="form-control" name="CAP" id="CAP" required>
                 <label for="Via">Via:</label>
-                <input type="text" name="Via" id="Via" required>
+                <input type="text" class="form-control" name="Via" id="Via" required>
                 <label for="Civico">Civico:</label>
-                <input type="number" name="Civico" id="Civico" required>
-                <button id="button6" type="submit"> Inserisci una nuova chiamata </button>
+                <input type="number" class="form-control" name="Civico" id="Civico" required>
+                <button id="button6" class="btn c" type="submit"> Inserisci una nuova chiamata </button>
             </form>
         </div>
 
         <div id="query7" class="queries">
-            <h2>inserisci una nuova segnalazione</h2>
+            <h3>Inserisci una nuova segnalazione</h3>
             <form id="formQuery7" action="query.php" method="post" class="formQuery">
                 <input type="hidden" name="InsertSegnalazione" value="7">
                 <label for="OperatoreSegnalazione">Operatore:</label>
-                <input type="text" name="OperatoreSegnalazione" id="OperatoreSegnalazione"  required>
+                <input type="text" class="form-control" name="OperatoreSegnalazione" id="OperatoreSegnalazione"  required>
                 <label for="Data">Data:</label>
-                <input type="date" name="Data" id="Data" required>
+                <input type="date" class="form-control" name="Data" id="Data" required>
                 <label for="Ora">Ora:</label>
-                <input type="time" name="Ora" id="Ora" required>
+                <input type="time" class="form-control" name="Ora" id="Ora" required>
                 <label for="Priorita">Priorità:</label>
-                <input type="number" name="Priorita" id="Priorita" required>
-                <button id="button7" type="submit"> Inserisci una nuova segnalazione </button>
+                <input type="number" class="form-control" name="Priorita" id="Priorita" required>
+                <button id="button7" class="btn c" type="submit"> Inserisci una nuova segnalazione </button>
             </form>
         </div>
 
         <div id="query8" class="queries">
-            <h2>inserisci una nuova manovra di soccorso</h2>
+            <h3>Inserisci una nuova manovra di soccorso</h3>
             <form id="formQuery8" action="query.php" method="post" class="formQuery">
                 <input type="hidden" name="InsertManovraSoccorso" value="8">
                 <label for="PazienteManovra">Paziente:</label>
-                <input type="text" name="PazienteManovra" id="PazienteManovra" required>
+                <input type="text" class="form-control" name="PazienteManovra" id="PazienteManovra" required>
                 <label for="Tipologia">Tipologia:</label>
-                <input type="text" name="Tipologia" id="Tipologia" required>
+                <input type="text" class="form-control" name="Tipologia" id="Tipologia" required>
                 <label for="cIdentificativo">Codice Identificativo:</label>
-                <input type="number" name="cIdentificativo" id="cIdentificativo" required>
-                <button id="button8" type="submit"> Inserisci una nuova manovra di soccorso </button>
+                <input type="number" class="form-control" name="cIdentificativo" id="cIdentificativo" required>
+                <button id="button8" class="btn c" type="submit"> Inserisci una nuova manovra di soccorso </button>
             </form>
         </div>
 
         <div id="query9" class="queries">
-            <h2>visualizzazione segnalazioni</h2>
+            <h3>Visualizzazione segnalazioni</h3>
             <p>selezionare una data per visualizzare<br>le annesse segnalazioni</p>
             <form id="formQuery9" action="query.php" method="post" class="formQuery">
                 <input type="hidden" name="query" value="9">
                 <label for="Data">Data:</label>
-                <input type="date" name="Data" id="Data" required>
-                <button id="button9" type="submit"> Visualizza Segnalazioni</button>
+                <input type="date" class="form-control" name="Data" id="Data" required>
+                <button id="button9" class="btn c" type="submit"> Visualizza Segnalazioni</button>
             </form>
             <div id="table9" class="card m-5">
                 <div class="card-body"></div>
@@ -236,13 +236,13 @@ $db->close();
         </div>
 
         <div id="query10" class="queries">
-            <h2>visualizzazione chiamate</h2>
+            <h3>Visualizzazione chiamate</h3>
             <p>selezionare una data per visualizzare<br>le annesse chiamate</p>
             <form id="formQuery10" action="query.php" method="post" class="formQuery">
                 <input type="hidden" name="query" value="10">
                 <label for="Data">Data:</label>
-                <input type="date" name="Data" id="Data" required>
-                <button id="button10" type="submit"> Visualizza chiamate</button>
+                <input type="date" class="form-control" name="Data" id="Data" required>
+                <button id="button10" class="btn c" type="submit"> Visualizza chiamate</button>
             </form>
             <div id="table10" class="card m-5">
                 <div class="card-body"></div>
@@ -250,45 +250,51 @@ $db->close();
         </div>
 
         <div id="query11" class="queries">
-            <h2>Revisioni da Aggiornare</h2>
+            <h3>Revisioni da Aggiornare</h3>
             <p>visualizzazione dei dispositivi medici<br>la cui revisione è scaduta in data</p>
             <h3><span id="dataOdierna11"></span></h3>
         </div>
 
         <div id="query12" class="queries">
-            <h2>Soccorritori - Pazienti</h2>
+            <h3>Soccorritori - Pazienti</h3>
             <p>
                 visualizzazione dei soccorritori che sono<br>
                 stati associati ad un paziente,<br>
                 per l'esecuzione di una manovra di soccorso
             </p>
+            <div id="table12" class="card m-5">
+                <div class="card-body"></div>
+            </div>
         </div>
 
         <div id="query13" class="queries">
-            <h2>Chiamate ricevute</h2>
+            <h3>Chiamate ricevute</h3>
             <p>selezionare un soccoritore per visualizzare<br>le chiamate ricevute in data</p>
             <h3><span id="dataOdierna13"></span></h3>
             <form id="formQuery13" action="query.php" method="post" class="formQuery">
                 <input type="hidden" name="query" value="13">
                 <label for="Soccorritore">Soccorritore:</label>
-                <input type="text" name="Soccorritore" id="Soccorritore" required>
-                <button id="button13" type="submit"> Visualizza chiamate ricevute</button>
+                <input type="text" class="form-control" name="Soccorritore" id="Soccorritore" required>
+                <button id="button13" class="btn c" type="submit"> Visualizza chiamate ricevute</button>
             </form>
+            <div id="table13" class="card m-5">
+                <div class="card-body"></div>
+            </div>
         </div>
 
         <div id="query14" class="queries">
-            <h2>Età media dei pazienti</h2>
+            <h3>Età media dei pazienti</h3>
             <p>l'eta media dei pazienti risulta essere:</p>
             <h3 id="media"></h3>
         </div>
         <div id="query15" class="queries">
-            <h2>Mezzi di Soccorso</h2>
+            <h3>Mezzi di Soccorso</h3>
             <p>selezionare un ente fornitore per visualizzare<br>i mezzi di soccorso forniti</p>
             <form id="formQuery15" action="query.php" method="post" class="formQuery">
                 <input type="hidden" name="query" value="15">
                 <label for="Fornitore">Fornitore:</label>
-                <input type="text" name="Fornitore" id="Fornitore" required>
-                <button id="button15" type="submit">Visualizza mezzi di soccorso</button>
+                <input type="text" class="form-control" name="Fornitore" id="Fornitore" required>
+                <button id="button15" class="btn c" type="submit">Visualizza mezzi di soccorso</button>
             </form>
             <div id="table15" class="card m-5">
                 <div class="card-body"></div>
@@ -296,13 +302,13 @@ $db->close();
         </div>
 
         <div id="query16" class="queries">
-            <h2>Manovre di Soccorso</h2>
+            <h3>Manovre di Soccorso</h3>
             <p>selezionare una tipologia di manovra di<br>soccorso per visualizzare quelle eseguite</p>
             <form id="formQuery16" action="query.php" method="post" class="formQuery">
                 <input type="hidden" name="query" value="16">
                 <label for="Tipologia">Tipologia:</label>
-                <input type="text" name="Tipologia" id="Tipologia" required>
-                <button id="button16" type="submit">Visualizza manovre di soccorso</button>
+                <input type="text" class="form-control" name="Tipologia" id="Tipologia" required>
+                <button id="button16" class="btn c" type="submit">Visualizza manovre di soccorso</button>
             </form>
             <div id="table16" class="card m-5">
                 <div class="card-body"></div>

@@ -246,6 +246,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['query'])) {
             break;
 
         case 12:
+            // Query da rivedere
             $query = "SELECT * FROM Soccorritore WHERE CodFiscale IN (SELECT Soccorritore FROM ManovraSoccorso)";
             $tableName = "table12";
             break;
