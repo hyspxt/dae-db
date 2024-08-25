@@ -1,3 +1,14 @@
+<?php
+$db = new SQLite3('../../dae.db');
+
+// Esecuzione della query 14
+$result = $db->query("SELECT AVG(Eta) AS eta_media FROM Paziente");
+$eta_media = $result->fetchArray(SQLITE3_ASSOC)['eta_media'];
+echo"<script>document.getElementById('media').innerHTML = $eta_media anni';</script>";
+
+$db->close();
+?>
+
 <!DOCTYPE html>
 <html lang="it">
 
@@ -7,8 +18,7 @@
     <title>Progetto Basi di Dati</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css"->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <link href="https://nightly.datatables.net/css/jquery.dataTables.css" rel="stylesheet" type="text/css" />
@@ -30,8 +40,8 @@
     
     <div class="contentSample">
         <form action="services.php" method="post" class="formSelezioneQ">
-            <label for="query">Scegli una query:</label>
-            <select name="query" id="query">
+            <label for="query" class="formSelezioneLabel">Scegli una query:</label>
+            <select name="query" id="query" class="query1section">
                 <option value="1">Query 1</option>
                 <option value="2">Query 2</option>
                 <option value="3">Query 3</option>

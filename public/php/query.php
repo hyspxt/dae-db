@@ -285,10 +285,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['query'])) {
     printTable($result, $tableName);
 }
 
-// Esecuzione della query 14
-$result = $db->query("SELECT AVG(Eta) AS eta_media FROM Paziente");
-$eta_media = $result->fetchArray(SQLITE3_ASSOC)['eta_media'];
-
 // Stampa la query
 function printTable($result, $tableName){
     if (empty($result)) {
