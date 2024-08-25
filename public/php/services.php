@@ -1,277 +1,3 @@
-<?php
-// Connessione al database SQLite
-$db = new SQLite3('../../dae.db');
-
-ob_start(); // Inizia l'output buffering
-
-// Esecuzione inserimento di un nuovo paziente
-if (isset($_POST['insertPaziente'])) {
-    $CodFiscale = $_POST['CodFiscale'];
-    $Nome = $_POST['Nome'];
-    $Cognome = $_POST['Cognome'];
-    $Sesso = $_POST['Sesso'];
-    $Eta = $_POST['EtaP'];
-    $CondMediche = $_POST['CondMediche'];
-
-    if ($CodFiscale && $Nome && $Cognome && $Sesso && $Eta) {
-        $stmt = $db->prepare("INSERT INTO Paziente (CodFiscale, Nome, Cognome, Sesso, Eta, CondMediche) VALUES (:CodFiscale, :Nome, :Cognome, :Sesso, :Eta, :CondMediche)");
-
-        $stmt->bindParam(':CodFiscale', $CodFiscale);
-        $stmt->bindParam(':Nome', $Nome);
-        $stmt->bindParam(':Cognome', $Cognome);
-        $stmt->bindParam(':Sesso', $Sesso);
-        $stmt->bindParam(':Eta', $Eta);
-        $stmt->bindParam(':CondMediche', $CondMediche);
-
-        if ($stmt->execute())
-            $message = "Operazione completata con successo!";
-        else
-            $message = "Errore nell'inserimento del paziente!";
-
-        echo "<script type='text/javascript'>alert('$message');</script>";
-    }
-        
-}
-
-// Esecuzione inserimento di un nuovo soccoritore
-if (isset($_POST['InsertSoccoritore'])) {
-    $CodFiscale = $_POST['CodFiscale'];
-    $Nome = $_POST['Nome'];
-    $Cognome = $_POST['Cognome'];
-    $Sesso = $_POST['Sesso'];
-    $Eta = $_POST['EtaS'];
-    $CAP = $_POST['CAP'];
-    $Via = $_POST['Via'];
-    $Civico = $_POST['Civico'];
-    $Cellulare = $_POST['Cellulare'];
-    $Email = $_POST['Email'];
-    $Certificato = $_POST['Certificato'];
-
-    if($CodFiscale && $Nome && $Cognome && $Sesso && $Eta && $CAP && $Via && $Civico && $Cellulare && $Email && $Certificato) {
-        $stmt = $db->prepare("INSERT INTO Soccorritore (CodFiscale, Nome, Cognome, Sesso, Eta, CAP, Via, Civico, Cellulare, Email, Certificato) VALUES (:CodFiscale, :Nome, :Cognome, :Sesso, :Eta, :CAP, :Via, :Civico, :Cellulare, :Email, :Certificato)");
-
-        $stmt->bindParam(':CodFiscale', $CodFiscale);
-        $stmt->bindParam(':Nome', $Nome);
-        $stmt->bindParam(':Cognome', $Cognome);
-        $stmt->bindParam(':Sesso', $Sesso);
-        $stmt->bindParam(':Eta', $Eta);
-        $stmt->bindParam(':CAP', $CAP);
-        $stmt->bindParam(':Via', $Via);
-        $stmt->bindParam(':Civico', $Civico);
-        $stmt->bindParam(':Cellulare', $Cellulare);
-        $stmt->bindParam(':Email', $Email);
-        $stmt->bindParam(':Certificato', $Certificato);
-
-        if ($stmt->execute())
-            $message = "Operazione completata con successo!";
-        else
-            $message = "Errore nell'inserimento del soccorritore!";
-        
-        echo "<script type='text/javascript'>alert('$message');</script>";
-    }
-}
-
-// Esecuzione inserimento di un nuovo operatore
-if (isset($_POST['InsertOperatore'])) {
-    $CodFiscale = $_POST['CodFiscale'];
-    $Nome = $_POST['Nome'];
-    $Cognome = $_POST['Cognome'];
-    $Sesso = $_POST['Sesso'];
-    $Eta = $_POST['EtaO'];
-    $LineaTel = $_POST['LineaTel'];
-
-    if($CodFiscale && $Nome && $Cognome && $Sesso && $Eta && $LineaTel) {
-        $stmt = $db->prepare("INSERT INTO Operatore (CodFiscale, Nome, Cognome, Sesso, Eta, LineaTel) VALUES (:CodFiscale, :Nome, :Cognome, :Sesso, :Eta, :LineaTel)");
-
-        $stmt->bindParam(':CodFiscale', $CodFiscale);
-        $stmt->bindParam(':Nome', $Nome);
-        $stmt->bindParam(':Cognome', $Cognome);
-        $stmt->bindParam(':Sesso', $Sesso);
-        $stmt->bindParam(':Eta', $Eta);
-        $stmt->bindParam(':LineaTel', $LineaTel);
-
-        if ($stmt->execute())
-            $message = "Operazione completata con successo!";
-        else
-            $message = "Errore nell'inserimento dell'operatore!";
-
-        echo "<script type='text/javascript'>alert('$message');</script>";
-    }
-}
-
-// Esecuzione inserimento di un nuovo mezzo di soccorso
-if (isset($_POST['InsertMezzoSoccorso'])) {
-    $Targa = $_POST['Targa'];
-    $Fornitore = $_POST['Fornitore'];
-    $OraArrivo = $_POST['OraArrivo'];
-    $segnalazioneMezzo = $_POST['segnalazioneMezzo'];
-
-    if($Targa && $Fornitore && $OraArrivo && $segnalazioneMezzo) {
-        $stmt = $db->prepare("INSERT INTO MezzoDiSoccorso (Targa, Fornitore, OraArrivo, Segnalazione) VALUES (:Targa, :Fornitore, :OraArrivo, :segnalazioneMezzo)");
-
-        $stmt->bindParam(':Targa', $Targa);
-        $stmt->bindParam(':Fornitore', $Fornitore);
-        $stmt->bindParam(':OraArrivo', $OraArrivo);
-        $stmt->bindParam(':segnalazioneMezzo', $segnalazioneMezzo);
-
-        if ($stmt->execute())
-            $message = "Operazione completata con successo!";
-        else
-            $message = "Errore nell'inserimento del mezzo di soccorso!";
-
-        echo "<script type='text/javascript'>alert('$message');</script>";
-    }
-}
-
-// Esecuzione inserimento di un nuovo strumento di soccorso
-if (isset($_POST['InsertStrumentoSoccorso'])) {
-    $ID = $_POST['ID'];
-    $Tipologia = $_POST['Tipologia'];
-    $CAP = $_POST['CAP'];
-    $Via = $_POST['Via'];
-    $Civico = $_POST['Civico'];
-    $Revisione = $_POST['Revisione'];
-
-    if($ID && $Tipologia && $CAP && $Via && $Civico && $Revisione) {
-        $stmt = $db->prepare("INSERT INTO DispositivoMedico (ID, Tipologia, CAP, Via, Civico, Revisione) VALUES (:ID, :Tipologia, :CAP, :Via, :Civico, :Revisione)");
-
-        $stmt->bindParam(':ID', $ID);
-        $stmt->bindParam(':Tipologia', $Tipologia);
-        $stmt->bindParam(':CAP', $CAP);
-        $stmt->bindParam(':Via', $Via);
-        $stmt->bindParam(':Civico', $Civico);
-        $stmt->bindParam(':Revisione', $Revisione);
-
-        if ($stmt->execute())
-            $message = "Operazione completata con successo!";
-        else
-            $message = "Errore nell'inserimento dello strumento di soccorso!";
-
-        echo "<script type='text/javascript'>alert('$message');</script>";
-    }
-}
-
-//inserisci una nuova chiamata
-if (isset($_POST['InsertChiamata'])) {
-    $PazienteChiamata = $_POST['PazienteChiamata'];
-    $OperatoreChiamata = $_POST['OperatoreChiamata'];
-    $Data = $_POST['Data'];
-    $Ora = $_POST['Ora'];
-    $CAP = $_POST['CAP'];
-    $Via = $_POST['Via'];
-    $Civico = $_POST['Civico'];
-
-    if($PazienteChiamata && $OperatoreChiamata && $Data && $Ora && $CAP && $Via && $Civico) {
-        $stmt = $db->prepare("INSERT INTO Chiamata (Paziente, Operatore, Data, Ora, CAP, Via, Civico) VALUES (:Paziente, :Operatore, :Data, :Ora, :CAP, :Via, :Civico)");
-
-        $stmt->bindParam(':Paziente', $PazienteChiamata);
-        $stmt->bindParam(':Operatore', $OperatoreChiamata);
-        $stmt->bindParam(':Data', $Data);
-        $stmt->bindParam(':Ora', $Ora);
-        $stmt->bindParam(':CAP', $CAP);
-        $stmt->bindParam(':Via', $Via);
-        $stmt->bindParam(':Civico', $Civico);
-
-        if ($stmt->execute())
-            $message = "Operazione completata con successo!";
-        else
-            $message = "Errore nell'inserimento della chiamata!";
-
-        echo "<script type='text/javascript'>alert('$message');</script>";
-    }
-}
-
-//inserisci una nuova Segnalazione
-if (isset($_POST['InsertSegnalazione'])) {
-    $OperatoreSegnalazione = $_POST['OperatoreSegnalazione'];
-    $SoccorritoreSegnalazione = $_POST['SoccorritoreSegnalazione'];
-    $MezzoSoccorsoSegnalazione = $_POST['MezzoSoccorsoSegnalazione'];
-    $Data = $_POST['Data'];
-    $Ora = $_POST['Ora'];
-    $Priorita = $_POST['Priorita'];
-
-    if($OperatoreSegnalazione && $SoccorritoreSegnalazione && $MezzoSoccorsoSegnalazione && $Data && $Ora && $Priorita) {
-        $stmt = $db->prepare("INSERT INTO Segnalazione (Operatore, Soccorritore, MezzoSoccorso, Data, Ora, Priorita) VALUES (:Operatore, :Soccorritore, :MezzoSoccorso, :Data, :Ora, :Priorita)");
-
-        $stmt->bindParam(':Operatore', $OperatoreSegnalazione);
-        $stmt->bindParam(':Soccorritore', $SoccorritoreSegnalazione);
-        $stmt->bindParam(':MezzoSoccorso', $MezzoSoccorsoSegnalazione);
-        $stmt->bindParam(':Data', $Data);
-        $stmt->bindParam(':Ora', $Ora);
-        $stmt->bindParam(':Priorita', $Priorita);
-
-        if ($stmt->execute())
-            $message = "Operazione completata con successo!";
-        else
-            $message = "Errore nell'inserimento della segnalazione!";
-
-        echo "<script type='text/javascript'>alert('$message');</script>";
-    }
-}
-
-//inserisci una nuova manovra di soccorso
-if (isset($_POST['InsertManovraSoccorso'])) {
-    $OperatoreManovra = $_POST['OperatoreManovra'];
-    $SoccorritoreManovra = $_POST['SoccorritoreManovra'];
-    $MezzoSoccorsoManovra = $_POST['MezzoSoccorsoManovra'];
-    $Tipologia = $_POST['Tipologia'];
-    $cIdentificativo = $_POST['cIdentificativo'];
-
-    if($OperatoreManovra && $SoccorritoreManovra && $MezzoSoccorsoManovra && $Tipologia && $cIdentificativo) {
-        $stmt = $db->prepare("INSERT INTO ManovraSoccorso (Operatore, Soccorritore, MezzoSoccorso, Tipologia, cIdentificativo) VALUES (:Operatore, :Soccorritore, :MezzoSoccorso, :Tipologia, :cIdentificativo)");
-
-        $stmt->bindParam(':Operatore', $OperatoreManovra);
-        $stmt->bindParam(':Soccorritore', $SoccorritoreManovra);
-        $stmt->bindParam(':MezzoSoccorso', $MezzoSoccorsoManovra);
-        $stmt->bindParam(':Tipologia', $Tipologia);
-        $stmt->bindParam(':cIdentificativo', $cIdentificativo);
-
-        if ($stmt->execute())
-            $message = "Operazione completata con successo!";
-        else
-            $message = "Errore nell'inserimento della manovra di soccorso!";
-
-        echo "<script type='text/javascript'>alert('$message');</script>";
-    }
-}
-
-// Esecuzione della query 11
-if (isset($_POST['query']) && $_POST['query'] == 11) {
-    $dataOdierna = date('Y-m-d');
-    $result = $db->query("SELECT * FROM StrumentoSoccorso WHERE Revisione < '$dataOdierna'");
-    $strumenti = [];
-    while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
-        $strumenti[] = $row;
-    }
-}
-
-// Esecuzione della query 12
-if (isset($_POST['query']) && $_POST['query'] == 12) {
-    $result = $db->query("SELECT * FROM Soccorritore WHERE CodFiscale IN (SELECT Soccorritore FROM ManovraSoccorso)");
-    $soccorritori = [];
-    while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
-        $soccorritori[] = $row;
-    }
-}
-
-// Esecuzione della query 13
-if (isset($_POST['query']) && $_POST['query'] == 13) {
-    $Soccorritore = $_POST['Soccorritore'];
-    $dataOdierna = date('Y-m-d');
-    $result = $db->query("SELECT * FROM Chiamata WHERE Data = '$dataOdierna' AND Operatore = '$Soccorritore'");
-    $chiamate = [];
-    while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
-        $chiamate[] = $row;
-    }
-}
-
-// Esecuzione della query 14
-$result = $db->query("SELECT AVG(Eta) AS eta_media FROM Paziente");
-$eta_media = $result->fetchArray(SQLITE3_ASSOC)['eta_media'];
-
-ob_end_flush();
-?>
-
 <!DOCTYPE html>
 <html lang="it">
 
@@ -282,6 +8,15 @@ ob_end_flush();
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css"->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <link href="https://nightly.datatables.net/css/jquery.dataTables.css" rel="stylesheet" type="text/css" />
+    <script src="https://nightly.datatables.net/js/jquery.dataTables.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <link href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
@@ -317,7 +52,7 @@ ob_end_flush();
         </form>
         <div id="query1" class="queries">
             <h2>Inserisci un nuovo paziente</h2>
-            <form action="services.php" method="post" class="formQuery">
+            <form id="formQuery1" action="query.php" method="post" class="formQuery">
                 <input type="hidden" name="insertPaziente" value="1">
                 <label for="CodFiscale">Codice Fiscale:</label>
                 <input type="text" name="CodFiscale" id="CodFiscale" required>
@@ -332,13 +67,13 @@ ob_end_flush();
                 <input type="range" min="0" max="120" name="EtaP" id="EtaP" required>
                 <label for="CondMediche">Condizioni mediche rilevanti:</label>
                 <input type="text" name="CondMediche" id="CondMediche">
-                <input type="submit" class="bottone" value="Inserisci un nuovo paziente">
+                <button id="button1" type="submit"> Inserisci un nuovo paziente </button>
             </form>
         </div>
 
         <div id="query2" class="queries">
             <h2>Inserisci un nuovo soccoritore</h2>
-            <form action="services.php" method="post"  class="formQuery no_gap">
+            <form id="formQuery2" action="query.php" method="post"  class="formQuery no_gap">
                 <input type="hidden" name="InsertSoccoritore" value="2">
                 <label for="CodFiscale">Codice Fiscale:</label>
                 <input type="text" name="CodFiscale" id="CodFiscale" required>
@@ -363,13 +98,13 @@ ob_end_flush();
                 <input type="email" name="Email" id="Email" required>
                 <label for="Certificato">Certificato:</label>
                 <input type="text" name="Certificato" id="Certificato" required>
-                <input type="submit" class="bottone" value="Inserisci un nuovo soccoritore">
+                <button id="button2" type="submit"> Inserisci un nuovo soccorritore </button>
             </form>
         </div>
 
         <div id="query3" class="queries">
             <h2>Inserisci un nuovo operatore</h2>
-            <form action="services.php" method="post" class="formQuery">
+            <form id="formQuery3" action="query.php" method="post" class="formQuery">
                 <input type="hidden" name ="InsertOperatore" value="3">
                 <label for="CodFiscale">Codice Fiscale:</label>
                 <input type="text" name="CodFiscale" id="CodFiscale" required>
@@ -384,13 +119,13 @@ ob_end_flush();
                 <input type="range" min="0" max="120" name="EtaO" id="EtaO" required>
                 <label for="LineaTel">Linea Telefonica:</label>
                 <input type="tel" name="LineaTel" id="LineaTel" required>
-                <input type="submit" class="bottone" value="Inserisci un nuovo operatore">
+                <button id="button3" type="submit"> Inserisci un nuovo operatore </button>
             </form>
         </div>
 
         <div id="query4" class="queries">
             <h2>Inserisci un<br>nuovo mezzo di soccorso</h2>
-            <form action="services.php" method="post" class="formQuery">
+            <form id="formQuery4" action="query.php" method="post" class="formQuery">
                 <input type="hidden" name="InsertMezzoSoccorso" value="4">
                 <label for="Targa">Targa:</label>
                 <input type="text" name="Targa" id="Targa" required>
@@ -400,13 +135,13 @@ ob_end_flush();
                 <input type="time" name="OraArrivo" id="OraArrivo" required>
                 <label for="segnalazioneMezzo">Segnalazione:</label>
                 <input type="text" name="segnalazioneMezzo" id="segnalazioneMezzo" required>
-                <input type="submit" class="bottone" value="Inserire un nuovo mezzo di soccorso">
+                <button id="button4" type="submit"> Inserisci un nuovo mezzo di soccorso </button>
             </form>
         </div>
 
         <div id="query5" class="queries">
             <h2>Inserisci un nuovo<br>strumento di soccorso</h2>
-            <form action="services.php" method="post" class="formQuery">
+            <form id="formQuery5" action="query.php" method="post" class="formQuery">
                 <input type="hidden" name="InsertStrumentoSoccorso" value="5">
                 <label for="ID">ID:</label>
                 <input type="number" name="ID" id="ID" required>
@@ -420,13 +155,13 @@ ob_end_flush();
                 <input type="number" name="Civico" id="Civico" required>
                 <label for="Revisione">Revisione:</label>
                 <input type="date" name="Revisione" id="Revisione" required>
-                <input type="submit" class="bottone" value="Inserire un nuovo strumento di soccorso">
+                <button id="button5" type="submit"> Inserisci un nuovo strumento di soccorso </button>
             </form>
         </div>
 
         <div id="query6" class="queries">
             <h2>inserisci una nuova chiamata</h2>
-            <form action="services.php" method="post" class="formQuery">
+            <form id="formQuery6" action="query.php" method="post" class="formQuery">
                 <input type="hidden" name="InsertChiamata" value="6">
                 <label for="PazienteChiamata">Paziente:</label>
                 <input type="text" name="PazienteChiamata" id="PazienteChiamata" required>
@@ -442,13 +177,13 @@ ob_end_flush();
                 <input type="text" name="Via" id="Via" required>
                 <label for="Civico">Civico:</label>
                 <input type="number" name="Civico" id="Civico" required>
-                <input type="submit" class="bottone" value="Inserire una nuova chiamata">
+                <button id="button6" type="submit"> Inserisci una nuova chiamata </button>
             </form>
         </div>
 
         <div id="query7" class="queries">
             <h2>inserisci una nuova segnalazione</h2>
-            <form action="services.php" method="post" class="formQuery">
+            <form id="formQuery7" action="query.php" method="post" class="formQuery">
                 <input type="hidden" name="InsertSegnalazione" value="7">
                 <label for="OperatoreSegnalazione">Operatore:</label>
                 <input type="text" name="OperatoreSegnalazione" id="OperatoreSegnalazione"  required>
@@ -462,13 +197,13 @@ ob_end_flush();
                 <input type="time" name="Ora" id="Ora" required>
                 <label for="Priorita">Priorità:</label>
                 <input type="number" name="Priorita" id="Priorita" required>
-                <input type="submit" class="bottone" value="Inserire una nuova segnalazione">
+                <button id="button7" type="submit"> Inserisci una nuova segnalazione </button>
             </form>
         </div>
 
         <div id="query8" class="queries">
             <h2>inserisci una nuova manovra di soccorso</h2>
-            <form action="services.php" method="post" class="formQuery">
+            <form id="formQuery8" action="query.php" method="post" class="formQuery">
                 <input type="hidden" name="InsertManovraSoccorso" value="8">
                 <label for="OperatoreManovra">Operatore:</label>
                 <input type="text" name="OperatoreManovra" id="OperatoreManovra" required>
@@ -480,7 +215,7 @@ ob_end_flush();
                 <input type="text" name="Tipologia" id="Tipologia" required>
                 <label for="cIdentificativo">Codice Identificativo:</label>
                 <input type="number" name="cIdentificativo" id="cIdentificativo" required>
-                <input type="submit" class="bottone" value="Inserire una nuova manovra di soccorso">
+                <button id="button8" type="submit"> Inserisci una nuova manovra di soccorso </button>
             </form>
         </div>
 
@@ -493,7 +228,9 @@ ob_end_flush();
                 <input type="date" name="Data" id="Data" required>
                 <button id="button9" type="submit"> Visualizza Segnalazioni</button>
             </form>
-            <div id="table9"></div>
+            <div id="table9" class="card m-5">
+                <div class="card-body"></div>
+            </div>
         </div>
 
         <div id="query10" class="queries">
@@ -505,7 +242,9 @@ ob_end_flush();
                 <input type="date" name="Data" id="Data" required>
                 <button id="button10" type="submit"> Visualizza chiamate</button>
             </form>
-            <div id="table10"></div>
+            <div id="table10" class="card m-5">
+                <div class="card-body"></div>
+            </div>
         </div>
 
         <div id="query11" class="queries">
@@ -527,11 +266,11 @@ ob_end_flush();
             <h2>Chiamate ricevute</h2>
             <p>selezionare un soccoritore per visualizzare<br>le chiamate ricevute in data</p>
             <h3><span id="dataOdierna13"></span></h3>
-            <form action="services.php" method="post" class="formQuery">
+            <form id="formQuery13" action="query.php" method="post" class="formQuery">
                 <input type="hidden" name="query" value="13">
                 <label for="Soccorritore">Soccorritore:</label>
                 <input type="text" name="Soccorritore" id="Soccorritore" required>
-                <input type="submit" class="bottone" value="Visualizza chiamate ricevute">
+                <button id="button13" type="submit"> Visualizza chiamate ricevute</button>
             </form>
         </div>
 
@@ -550,7 +289,9 @@ ob_end_flush();
                 <input type="text" name="Fornitore" id="Fornitore" required>
                 <button id="button15" type="submit">Visualizza mezzi di soccorso</button>
             </form>
-            <div id="table15"></div>
+            <div id="table15" class="card m-5">
+                <div class="card-body"></div>
+            </div>
         </div>
 
         <div id="query16" class="queries">
@@ -562,16 +303,13 @@ ob_end_flush();
                 <input type="text" name="Tipologia" id="Tipologia" required>
                 <button id="button16" type="submit">Visualizza manovre di soccorso</button>
             </form>
-            <div id="table16"></div>
+            <div id="table16" class="card m-5">
+                <div class="card-body"></div>
+            </div>
         </div>
 
     </div>
     <script src="../js/script.js"></script>
 </body>
 
-
 </html>
-<?php
-// Chiusura della connessione al database
-$db->close();
-?>

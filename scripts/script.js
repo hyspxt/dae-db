@@ -112,8 +112,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Setup queries
-    setupQuery('button10', 'formQuery10', 'table10');
     setupQuery('button9', 'formQuery9', 'table9');
+    setupQuery('button10', 'formQuery10', 'table10');
+    setupQuery('button13', 'formQuery13', 'table13');
+    setupQuery('button14', 'formQuery14', 'table14');
     setupQuery('button15', 'formQuery15', 'table15');
     setupQuery('button16', 'formQuery16', 'table16');
 });
