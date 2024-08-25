@@ -4,7 +4,7 @@ $db = new SQLite3('../../dae.db');
 // Esecuzione della query 14
 $result = $db->query("SELECT AVG(Eta) AS eta_media FROM Paziente");
 $eta_media = $result->fetchArray(SQLITE3_ASSOC)['eta_media'];
-echo"<script>document.getElementById('media').innerHTML = $eta_media anni';</script>";
+echo"<script>document.getElementById('media').innerHTML = $eta_media';</script>";
 
 $db->close();
 ?>
@@ -197,10 +197,6 @@ $db->close();
                 <input type="hidden" name="InsertSegnalazione" value="7">
                 <label for="OperatoreSegnalazione">Operatore:</label>
                 <input type="text" name="OperatoreSegnalazione" id="OperatoreSegnalazione"  required>
-                <label for="SoccorritoreSegnalazione">Soccorritore:</label>
-                <input type="text" name="SoccorritoreSegnalazione" id="SoccorritoreSegnalazione"  required>
-                <label for="MezzoSoccorsoSegnalazione">Mezzo di Soccorso:</label>
-                <input type="text" name="MezzoSoccorsoSegnalazione" id="MezzoSoccorsoSegnalazione" required>
                 <label for="Data">Data:</label>
                 <input type="date" name="Data" id="Data" required>
                 <label for="Ora">Ora:</label>
@@ -215,12 +211,8 @@ $db->close();
             <h2>inserisci una nuova manovra di soccorso</h2>
             <form id="formQuery8" action="query.php" method="post" class="formQuery">
                 <input type="hidden" name="InsertManovraSoccorso" value="8">
-                <label for="OperatoreManovra">Operatore:</label>
-                <input type="text" name="OperatoreManovra" id="OperatoreManovra" required>
-                <label for="SoccorritoreManovra">Soccorritore:</label>
-                <input type="text" name="SoccorritoreManovra" id="SoccorritoreManovra" required>
-                <label for="MezzoSoccorsoManovra">Mezzo di Soccorso:</label>
-                <input type="text" name="MezzoSoccorsoManovra" id="MezzoSoccorsoManovra" required>
+                <label for="PazienteManovra">Paziente:</label>
+                <input type="text" name="PazienteManovra" id="PazienteManovra" required>
                 <label for="Tipologia">Tipologia:</label>
                 <input type="text" name="Tipologia" id="Tipologia" required>
                 <label for="cIdentificativo">Codice Identificativo:</label>
@@ -287,9 +279,8 @@ $db->close();
         <div id="query14" class="queries">
             <h2>Età media dei pazienti</h2>
             <p>l'eta media dei pazienti risulta essere:</p>
-            <h3 id="media"><?php echo floor($eta_media); ?></h3>
+            <h3 id="media"></h3>
         </div>
-
         <div id="query15" class="queries">
             <h2>Mezzi di Soccorso</h2>
             <p>selezionare un ente fornitore per visualizzare<br>i mezzi di soccorso forniti</p>

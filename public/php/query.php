@@ -182,18 +182,14 @@ if (isset($_POST['InsertChiamata'])) {
 //inserisci una nuova Segnalazione
 if (isset($_POST['InsertSegnalazione'])) {
     $OperatoreSegnalazione = $_POST['OperatoreSegnalazione'];
-    $SoccorritoreSegnalazione = $_POST['SoccorritoreSegnalazione'];
-    $MezzoSoccorsoSegnalazione = $_POST['MezzoSoccorsoSegnalazione'];
     $Data = $_POST['Data'];
     $Ora = $_POST['Ora'];
     $Priorita = $_POST['Priorita'];
 
-    if($OperatoreSegnalazione && $SoccorritoreSegnalazione && $MezzoSoccorsoSegnalazione && $Data && $Ora && $Priorita) {
-        $stmt = $db->prepare("INSERT INTO Segnalazione (Operatore, Soccorritore, MezzoSoccorso, Data, Ora, Priorita) VALUES (:Operatore, :Soccorritore, :MezzoSoccorso, :Data, :Ora, :Priorita)");
+    if($OperatoreSegnalazione && $Data && $Ora && $Priorita) {
+        $stmt = $db->prepare("INSERT INTO Segnalazione (Priorita, Data, Ora, Operatore) VALUES (:Priorita, :Data, :Ora, :Operatore)");
 
         $stmt->bindParam(':Operatore', $OperatoreSegnalazione);
-        $stmt->bindParam(':Soccorritore', $SoccorritoreSegnalazione);
-        $stmt->bindParam(':MezzoSoccorso', $MezzoSoccorsoSegnalazione);
         $stmt->bindParam(':Data', $Data);
         $stmt->bindParam(':Ora', $Ora);
         $stmt->bindParam(':Priorita', $Priorita);
@@ -209,18 +205,14 @@ if (isset($_POST['InsertSegnalazione'])) {
 
 //inserisci una nuova manovra di soccorso
 if (isset($_POST['InsertManovraSoccorso'])) {
-    $OperatoreManovra = $_POST['OperatoreManovra'];
-    $SoccorritoreManovra = $_POST['SoccorritoreManovra'];
-    $MezzoSoccorsoManovra = $_POST['MezzoSoccorsoManovra'];
+    $PazienteManovra = $_POST['PazienteManovra'];
     $Tipologia = $_POST['Tipologia'];
     $cIdentificativo = $_POST['cIdentificativo'];
 
-    if($OperatoreManovra && $SoccorritoreManovra && $MezzoSoccorsoManovra && $Tipologia && $cIdentificativo) {
-        $stmt = $db->prepare("INSERT INTO ManovraSoccorso (Operatore, Soccorritore, MezzoSoccorso, Tipologia, cIdentificativo) VALUES (:Operatore, :Soccorritore, :MezzoSoccorso, :Tipologia, :cIdentificativo)");
+    if($PazienteManovra && $Tipologia && $cIdentificativo) {
+        $stmt = $db->prepare("INSERT INTO ManovraSoccorso (Paziente, Tipologia, cIdentificativo) VALUES (:Paziente, :Tipologia, :cIdentificativo)");
 
-        $stmt->bindParam(':Operatore', $OperatoreManovra);
-        $stmt->bindParam(':Soccorritore', $SoccorritoreManovra);
-        $stmt->bindParam(':MezzoSoccorso', $MezzoSoccorsoManovra);
+        $stmt->bindParam(':Paziente', $MezzoSoccorsoManovra);
         $stmt->bindParam(':Tipologia', $Tipologia);
         $stmt->bindParam(':cIdentificativo', $cIdentificativo);
 
@@ -320,6 +312,15 @@ function getResult($query){
         $data[] = $row;
     }
     return $data;
+}
+
+// Esecuzione calcolo media dei pazienti
+
+if (isset($_GET['action']) && $_GET['action'] === 'getEtaMedia') {
+    global $db;
+    $result = $db->query("SELECT AVG(Eta) AS eta_media FROM Paziente");
+    $eta_media = $result->fetchArray(SQLITE3_ASSOC)['eta_media'];
+    echo $eta_media;
 }
 
 // Chiude la connessione al database

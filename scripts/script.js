@@ -10,6 +10,15 @@ function SelezioneForm() {
             forms[i].style.display = 'flex';
             if (query == 11 || query == 13)
                 StampadataOdierna(query);
+            if (query == 14){
+                fetch('query.php?action=getEtaMedia')
+                .then(response => response.text())
+                .then(data => {
+                    console.log('Server response:', data);
+                    document.getElementById('media').innerText = data;
+                })
+                .catch(error => console.error('Error fetching data:', error));
+            }
         } else {
             forms[i].style.display = 'none';
         }
@@ -80,6 +89,7 @@ rangeInputO.addEventListener('input', function() {
     rangeValueO.textContent = document.getElementById('EtaO').value;
 });
 
+
 // Funzione per visualizzare la tabella della query 10
 document.addEventListener('DOMContentLoaded', function() {
     function setupQuery(buttonId, formId, tableId) {
@@ -115,7 +125,6 @@ document.addEventListener('DOMContentLoaded', function() {
     setupQuery('button9', 'formQuery9', 'table9');
     setupQuery('button10', 'formQuery10', 'table10');
     setupQuery('button13', 'formQuery13', 'table13');
-    setupQuery('button14', 'formQuery14', 'table14');
     setupQuery('button15', 'formQuery15', 'table15');
     setupQuery('button16', 'formQuery16', 'table16');
 });
