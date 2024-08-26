@@ -101,16 +101,12 @@ if (isset($_POST['InsertOperatore'])) {
 if (isset($_POST['InsertMezzoSoccorso'])) {
     $Targa = $_POST['Targa'];
     $Fornitore = $_POST['Fornitore'];
-    $OraArrivo = $_POST['OraArrivo'];
-    $segnalazioneMezzo = $_POST['segnalazioneMezzo'];
 
     if($Targa && $Fornitore && $OraArrivo && $segnalazioneMezzo) {
-        $stmt = $db->prepare("INSERT INTO MezzoDiSoccorso (Targa, Fornitore, OraArrivo, Segnalazione) VALUES (:Targa, :Fornitore, :OraArrivo, :segnalazioneMezzo)");
+        $stmt = $db->prepare("INSERT INTO MezzoDiSoccorso (Targa, Fornitore) VALUES (:Targa, :Fornitore)");
 
         $stmt->bindParam(':Targa', $Targa);
         $stmt->bindParam(':Fornitore', $Fornitore);
-        $stmt->bindParam(':OraArrivo', $OraArrivo);
-        $stmt->bindParam(':segnalazioneMezzo', $segnalazioneMezzo);
 
         if ($stmt->execute())
             $message = "Operazione completata con successo!";

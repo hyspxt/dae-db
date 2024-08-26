@@ -141,10 +141,6 @@ $db->close();
                 <input type="text" class="form-control" name="Targa" id="Targa" required>
                 <label for="Fornitore">Fornitore:</label>
                 <input type="text" class="form-control" name="Fornitore" id="Fornitore" required>
-                <label for="OraArrivo">Ora di arrivo:</label>
-                <input type="time" class="form-control" name="OraArrivo" id="OraArrivo" required>
-                <label for="segnalazioneMezzo">Segnalazione:</label>
-                <input type="text" class="form-control" name="segnalazioneMezzo" id="segnalazioneMezzo" required>
                 <button id="button4" class="btn c" type="submit"> Inserisci un nuovo mezzo di soccorso </button>
             </form>
         </div>
