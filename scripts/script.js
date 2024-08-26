@@ -19,6 +19,24 @@ function SelezioneForm() {
                 })
                 .catch(error => console.error('Error fetching data:', error));
             }
+            if (query == 11){
+                fetch('query.php?action=getLicenzeScadute')
+                .then(response => response.text())
+                .then(data => {
+                    console.log('Server response:', data);
+                    document.getElementById('table11').innerText = data;
+                })
+                .catch(error => console.error('Error fetching data:', error));
+            }
+            if (query == 12){
+                fetch('query.php?action=getSoccorritoriPazienti')
+                .then(response => response.text())
+                .then(data => {
+                    console.log('Server response:', data);
+                    document.getElementById('table12').innerText = data;
+                })
+                .catch(error => console.error('Error fetching data:', error));
+            }
         } else {
             forms[i].style.display = 'none';
         }

@@ -253,6 +253,9 @@ $db->close();
             <h3>Revisioni da Aggiornare</h3>
             <p>visualizzazione dei dispositivi medici<br>la cui revisione è scaduta in data</p>
             <h3><span id="dataOdierna11"></span></h3>
+            <div id="table11" class="card m-5">
+                <div class="card-body"></div>
+            </div>
         </div>
 
         <div id="query12" class="queries">
@@ -269,12 +272,12 @@ $db->close();
 
         <div id="query13" class="queries">
             <h3>Chiamate ricevute</h3>
-            <p>selezionare un soccoritore per visualizzare<br>le chiamate ricevute in data</p>
+            <p>selezionare un operatore per visualizzare<br>le chiamate ricevute in data</p>
             <h3><span id="dataOdierna13"></span></h3>
             <form id="formQuery13" action="query.php" method="post" class="formQuery">
                 <input type="hidden" name="query" value="13">
-                <label for="Soccorritore">Soccorritore:</label>
-                <input type="text" class="form-control" name="Soccorritore" id="Soccorritore" required>
+                <label for="Operatore">Operatore:</label>
+                <input type="text" class="form-control" name="Operatore" id="Operatore" required>
                 <button id="button13" class="btn c" type="submit"> Visualizza chiamate ricevute</button>
             </form>
             <div id="table13" class="card m-5">

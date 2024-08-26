@@ -210,9 +210,9 @@ if (isset($_POST['InsertManovraSoccorso'])) {
     $cIdentificativo = $_POST['cIdentificativo'];
 
     if($PazienteManovra && $Tipologia && $cIdentificativo) {
-        $stmt = $db->prepare("INSERT INTO ManovraSoccorso (Paziente, Tipologia, cIdentificativo) VALUES (:Paziente, :Tipologia, :cIdentificativo)");
+        $stmt = $db->prepare("INSERT INTO ManovraDiSoccorso (Paziente, Tipologia, Id) VALUES (:Paziente, :Tipologia, :cIdentificativo)");
 
-        $stmt->bindParam(':Paziente', $MezzoSoccorsoManovra);
+        $stmt->bindParam(':Paziente', $PazienteManovra);
         $stmt->bindParam(':Tipologia', $Tipologia);
         $stmt->bindParam(':cIdentificativo', $cIdentificativo);
 
@@ -223,6 +223,34 @@ if (isset($_POST['InsertManovraSoccorso'])) {
 
         echo "<script type='text/javascript'>alert('$message'); window.location.href = 'services.php';</script>";
     }
+}
+
+// Esecuzione calcolo media dei pazienti
+
+if (isset($_GET['action']) && $_GET['action'] === 'getEtaMedia') {
+    global $db;
+    $result = $db->query("SELECT AVG(Eta) AS eta_media FROM Paziente");
+    $eta_media = $result->fetchArray(SQLITE3_ASSOC)['eta_media'];
+    echo $eta_media;
+}
+
+// Visualizzazione licenze scadute
+if (isset($_GET['action']) && $_GET['action'] === 'getLicenzeScadute') {
+    $dataOdierna = date('Y-m-d');
+    $query = "SELECT * FROM DispositivoMedico WHERE (julianday('$dataOdierna') - julianday(Revisione)) <= 730";
+    $tableName = "table11";
+    $result = getResult($query);
+    printTable($result, $tableName);
+}
+
+// Visualizzazione Soccorritori associati a pazienti
+if (isset($_GET['action']) && $_GET['action'] === 'getSoccorritoriPazienti') {
+    $query = "  SELECT S.Nome, P.Nome, M.Tipologia 
+                FROM Soccorritore as S, Paziente as P, ManovraDiSoccorso as M, Esecuzione as E 
+                WHERE S.CodFiscale = E.Soccorritore AND E.Manovra = M.ID AND M.Paziente = P.CodFiscale";
+    $tableName = "table12";
+    $result = getResult($query);
+    printTable($result, $tableName);
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['query'])) {
@@ -239,22 +267,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['query'])) {
             $tableName = "table10";
             break;
 
-        case 11:
-            $dataOdierna = date('Y-m-d');
-            $query = "SELECT * FROM StrumentoSoccorso WHERE Revisione < '$dataOdierna'";
-            $tableName = "table11";
-            break;
-
-        case 12:
-            // Query da rivedere
-            $query = "SELECT * FROM Soccorritore WHERE CodFiscale IN (SELECT Soccorritore FROM ManovraSoccorso)";
-            $tableName = "table12";
-            break;
-
         case 13:
-            $Soccorritore = $_POST['Soccorritore'];
+            $Operatore = $_POST['Operatore'];
             $dataOdierna = date('Y-m-d');
-            $query = "SELECT * FROM Chiamata WHERE Data = '$dataOdierna' AND Operatore = '$Soccorritore'";
+            $query = "SELECT * FROM Chiamata WHERE Data = '$dataOdierna' AND Operatore = '$Operatore'";
             $tableName = "table13";
             break;
 
@@ -281,7 +297,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['query'])) {
 // Stampa la query
 function printTable($result, $tableName){
     if (empty($result)) {
-        echo "<p>Nessun dato trovato nella tabella.</p>";
+        echo "Nessun dato trovato nella tabella.";
     } else {
         echo "<table id=$tableName class='table table-striped w-100'>";
         echo "<thead><tr>";
@@ -313,15 +329,6 @@ function getResult($query){
         $data[] = $row;
     }
     return $data;
-}
-
-// Esecuzione calcolo media dei pazienti
-
-if (isset($_GET['action']) && $_GET['action'] === 'getEtaMedia') {
-    global $db;
-    $result = $db->query("SELECT AVG(Eta) AS eta_media FROM Paziente");
-    $eta_media = $result->fetchArray(SQLITE3_ASSOC)['eta_media'];
-    echo $eta_media;
 }
 
 // Chiude la connessione al database
