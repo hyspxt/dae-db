@@ -230,25 +230,6 @@ if (isset($_GET['action']) && $_GET['action'] === 'getEtaMedia') {
     echo $eta_media;
 }
 
-// Visualizzazione licenze scadute
-if (isset($_GET['action']) && $_GET['action'] === 'getLicenzeScadute') {
-    $dataOdierna = date('Y-m-d');
-    $query = "SELECT * FROM DispositivoMedico WHERE (julianday('$dataOdierna') - julianday(Revisione)) <= 730";
-    $tableName = "table11";
-    $result = getResult($query);
-    printTable($result, $tableName);
-}
-
-// Visualizzazione Soccorritori associati a pazienti
-if (isset($_GET['action']) && $_GET['action'] === 'getSoccorritoriPazienti') {
-    $query = "  SELECT S.Nome, P.Nome, M.Tipologia 
-                FROM Soccorritore as S, Paziente as P, ManovraDiSoccorso as M, Esecuzione as E 
-                WHERE S.CodFiscale = E.Soccorritore AND E.Manovra = M.ID AND M.Paziente = P.CodFiscale";
-    $tableName = "table12";
-    $result = getResult($query);
-    printTable($result, $tableName);
-}
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['query'])) {
     switch ($_POST['query']) {
         case 9:
@@ -261,6 +242,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['query'])) {
             $Data = $_POST['Data'];
             $query = "SELECT * FROM Chiamata WHERE Data = '$Data'";
             $tableName = "table10";
+            break;
+        
+        case 11:
+            $dataOdierna = date('Y-m-d');
+            $query = "SELECT * FROM DispositivoMedico WHERE (julianday('$dataOdierna') - julianday(Revisione)) >= 730";
+            $tableName = "table11";
+            break;
+
+        case 12:
+            $query = "  SELECT S.Nome AS 'Soccorritore', P.Nome AS 'Paziente', M.Tipologia AS 'Manovra' 
+                        FROM Soccorritore as S, Paziente as P, ManovraDiSoccorso as M, Esecuzione as E 
+                        WHERE S.CodFiscale = E.Soccorritore AND E.Manovra = M.ID AND M.Paziente = P.CodFiscale";
+            $tableName = "table12";
             break;
 
         case 13:

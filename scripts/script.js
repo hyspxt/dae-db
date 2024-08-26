@@ -19,24 +19,6 @@ function SelezioneForm() {
                 })
                 .catch(error => console.error('Error fetching data:', error));
             }
-            if (query == 11){
-                fetch('query.php?action=getLicenzeScadute')
-                .then(response => response.text())
-                .then(data => {
-                    console.log('Server response:', data);
-                    document.getElementById('table11').innerText = data;
-                })
-                .catch(error => console.error('Error fetching data:', error));
-            }
-            if (query == 12){
-                fetch('query.php?action=getSoccorritoriPazienti')
-                .then(response => response.text())
-                .then(data => {
-                    console.log('Server response:', data);
-                    document.getElementById('table12').innerText = data;
-                })
-                .catch(error => console.error('Error fetching data:', error));
-            }
         } else {
             forms[i].style.display = 'none';
         }
@@ -142,6 +124,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Setup queries
     setupQuery('button9', 'formQuery9', 'table9');
     setupQuery('button10', 'formQuery10', 'table10');
+    setupQuery('button11', 'formQuery11', 'table11');
+    setupQuery('button12', 'formQuery12', 'table12');
     setupQuery('button13', 'formQuery13', 'table13');
     setupQuery('button15', 'formQuery15', 'table15');
     setupQuery('button16', 'formQuery16', 'table16');

@@ -248,7 +248,11 @@ $db->close();
         <div id="query11" class="queries">
             <h3>Revisioni da Aggiornare</h3>
             <p>visualizzazione dei dispositivi medici<br>la cui revisione è scaduta in data</p>
-            <h3><span id="dataOdierna11"></span></h3>
+            <form id="formQuery11" action="query.php" method="post" class="formQuery">
+                <input type="hidden" name="query" value="11">
+                <h3><span id="dataOdierna11"></span></h3>
+                <button id="button11" class="btn c" type="submit"> Visualizza revisioni da aggiornare</button>
+            </form>
             <div id="table11" class="card m-5">
                 <div class="card-body"></div>
             </div>
@@ -261,6 +265,10 @@ $db->close();
                 stati associati ad un paziente,<br>
                 per l'esecuzione di una manovra di soccorso
             </p>
+            <form id="formQuery12" action="query.php" method="post" class="formQuery">
+                <input type="hidden" name="query" value="12">
+                <button id="button12" class="btn c" type="submit"> Visualizza tabella</button>
+            </form>
             <div id="table12" class="card m-5">
                 <div class="card-body"></div>
             </div>
