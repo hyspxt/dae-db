@@ -4,7 +4,7 @@ $db = new SQLite3('../../dae.db');
 // Esecuzione della query 14
 $result = $db->query("SELECT AVG(Eta) AS eta_media FROM Paziente");
 $eta_media = $result->fetchArray(SQLITE3_ASSOC)['eta_media'];
-echo"<script>document.getElementById('media').innerHTML = $eta_media';</script>";
+echo "<script>document.getElementById('media').innerHTML = $eta_media';</script>";
 
 $db->close();
 ?>
@@ -33,11 +33,11 @@ $db->close();
     <div class="navbar">
         <ul>
             <li><a href="../../index.html"><i class="fas fa-home"></i> Home</a></li>
-            <li><a href="sample.php"><i class="fas fa-info-circle"></i> Database </a></li>
+            <li><a href="db.php"><i class="fas fa-info-circle"></i> Database </a></li>
             <li><a href="services.php" class="active"><i class="fas fa-cogs"></i> Query </a></li>
         </ul>
     </div>
-    
+
     <div class="contentSample">
         <form action="services.php" method="post" class="formSelezioneQ">
             <label for="query" class="formSelezioneLabel">Scegli una query:</label>
@@ -65,13 +65,17 @@ $db->close();
             <form id="formQuery1" action="query.php" method="post" class="formQuery">
                 <input type="hidden" name="insertPaziente" value="1">
                 <label for="CodFiscale">Codice Fiscale:</label>
-                <input type="text" class="form-control" name="CodFiscale" id="CodFiscale" required>
+                <input type="text" class="form-control" name="CodFiscale" id="CodFiscale" pattern="^[A-Z]{6}\d{2}[A-Z]\d{2}[A-Z]\d{3}[A-Z]$"required>
                 <label for="Nome">Nome:</label>
                 <input type="text" class="form-control" name="Nome" id="Nome" required>
                 <label for="Cognome">Cognome:</label>
                 <input type="text" class="form-control" name="Cognome" id="Cognome" required>
                 <label for="Sesso">Sesso:</label>
-                <input type="text" class="form-control" name="Sesso" id="Sesso" required>
+                <select class="form-control" name="Sesso" id="Sesso" required>
+                    <option value="M">Maschio</option>
+                    <option value="F">Femmina</option>
+                    <option value="A">Altro</option>
+                </select>
                 <label for="EtaP">Etá:</label>
                 <span id="rangeValueP"></span>
                 <input type="range" min="0" max="120" name="EtaP" id="EtaP" required>
@@ -83,21 +87,25 @@ $db->close();
 
         <div id="query2" class="queries">
             <h3>Inserisci un nuovo soccoritore</h3>
-            <form id="formQuery2" action="query.php" method="post"  class="formQuery no_gap">
+            <form id="formQuery2" action="query.php" method="post" class="formQuery no_gap">
                 <input type="hidden" name="InsertSoccoritore" value="2">
                 <label for="CodFiscale">Codice Fiscale:</label>
-                <input type="text" class="form-control" name="CodFiscale" id="CodFiscale" required>
+                <input type="text" class="form-control" name="CodFiscale" id="CodFiscale" pattern="^[A-Z]{6}\d{2}[A-Z]\d{2}[A-Z]\d{3}[A-Z]$" required>
                 <label for="Nome">Nome:</label>
                 <input type="text" class="form-control" name="Nome" id="Nome" required>
                 <label for="Cognome">Cognome:</label>
                 <input type="text" class="form-control" name="Cognome" id="Cognome" required>
                 <label for="Sesso">Sesso:</label>
-                <input type="text" class="form-control" name="Sesso" id="Sesso" required>
+                <select class="form-control" name="Sesso" id="Sesso" required>
+                    <option value="M">Maschio</option>
+                    <option value="F">Femmina</option>
+                    <option value="A">Altro</option>
+                </select>
                 <label for="EtaS">Etá:</label>
                 <span id="rangeValueS"></span>
                 <input type="range" min="0" max="120" name="EtaS" id="EtaS" required>
                 <label for="CAP">CAP:</label>
-                <input type="number" class="form-control" name="CAP" id="CAP" required>
+                <input type="text" class="form-control" name="CAP" id="CAP" pattern="\d{5}" maxlength="5" required>
                 <label for="Via">Via:</label>
                 <input type="text" class="form-control" name="Via" id="Via" required>
                 <label for="Civico">Civico:</label>
@@ -115,15 +123,19 @@ $db->close();
         <div id="query3" class="queries">
             <h3>Inserisci un nuovo operatore</h3>
             <form id="formQuery3" action="query.php" method="post" class="formQuery">
-                <input type="hidden" name ="InsertOperatore" value="3">
+                <input type="hidden" name="InsertOperatore" value="3">
                 <label for="CodFiscale">Codice Fiscale:</label>
-                <input type="text" class="form-control" name="CodFiscale" id="CodFiscale" required>
+                <input type="text" class="form-control" name="CodFiscale" id="CodFiscale" pattern="^[A-Z]{6}\d{2}[A-Z]\d{2}[A-Z]\d{3}[A-Z]$" required>
                 <label for="Nome">Nome:</label>
                 <input type="text" class="form-control" name="Nome" id="Nome" required>
                 <label for="Cognome">Cognome:</label>
                 <input type="text" class="form-control" name="Cognome" id="Cognome" required>
                 <label for="Sesso">Sesso:</label>
-                <input type="text" class="form-control" name="Sesso" id="Sesso" required>
+                <select class="form-control" name="Sesso" id="Sesso" required>
+                    <option value="M">Maschio</option>
+                    <option value="F">Femmina</option>
+                    <option value="A">Altro</option>
+                </select>
                 <label for="EtaO">Etá:</label>
                 <span id="rangeValueO"></span>
                 <input type="range" min="0" max="120" name="EtaO" id="EtaO" required>
@@ -192,13 +204,24 @@ $db->close();
             <form id="formQuery7" action="query.php" method="post" class="formQuery">
                 <input type="hidden" name="InsertSegnalazione" value="7">
                 <label for="OperatoreSegnalazione">Operatore:</label>
-                <input type="text" class="form-control" name="OperatoreSegnalazione" id="OperatoreSegnalazione"  required>
+                <input type="text" class="form-control" name="OperatoreSegnalazione" id="OperatoreSegnalazione" required>
                 <label for="Data">Data:</label>
                 <input type="date" class="form-control" name="Data" id="Data" required>
                 <label for="Ora">Ora:</label>
                 <input type="time" class="form-control" name="Ora" id="Ora" required>
                 <label for="Priorita">Priorità:</label>
                 <input type="number" class="form-control" name="Priorita" id="Priorita" required>
+
+                <label for="toggleFields">É richiesto un mezzo di soccorso?</label>
+                <input type="checkbox" id="toggleFields" onclick="toggleExtraFields()">
+
+                <div id="extraFields" style="display: none;">
+                    <label for="TargaMezzo">Targa Mezzo:</label>
+                    <input type="text" class="form-control" name="TargaMezzo" id="TargaMezzo" pattern="^[A-Z]{2}\d{3}[A-Z]{2}$" title="AA123BB">
+
+                    <label for="OraDiArrivo">Ora di Arrivo:</label>
+                    <input type="time" class="form-control" name="OraDiArrivo" id="OraDiArrivo">
+                </div>
                 <button id="button7" class="btn c" type="submit"> Inserisci una nuova segnalazione </button>
             </form>
         </div>

@@ -102,7 +102,7 @@ if (isset($_POST['InsertMezzoSoccorso'])) {
     $Targa = $_POST['Targa'];
     $Fornitore = $_POST['Fornitore'];
 
-    if($Targa && $Fornitore && $OraArrivo && $segnalazioneMezzo) {
+    if($Targa && $Fornitore) {
         $stmt = $db->prepare("INSERT INTO MezzoDiSoccorso (Targa, Fornitore) VALUES (:Targa, :Fornitore)");
 
         $stmt->bindParam(':Targa', $Targa);
@@ -181,14 +181,24 @@ if (isset($_POST['InsertSegnalazione'])) {
     $Data = $_POST['Data'];
     $Ora = $_POST['Ora'];
     $Priorita = $_POST['Priorita'];
+    $Targa = $_POST['TargaMezzo'];
+    $OraDiArrivo = $_POST['OraDiArrivo'];
+
 
     if($OperatoreSegnalazione && $Data && $Ora && $Priorita) {
-        $stmt = $db->prepare("INSERT INTO Segnalazione (Priorita, Data, Ora, Operatore) VALUES (:Priorita, :Data, :Ora, :Operatore)");
+        if ($Targa && $OraDiArrivo)
+            $stmt = $db->prepare("INSERT INTO Segnalazione (Priorita, Data, Ora, Operatore, Mezzo, OraDiArrivo) VALUES (:Priorita, :Data, :Ora, :Operatore, :Targa, :OraDiArrivo)");
+        else 
+            $stmt = $db->prepare("INSERT INTO Segnalazione (Priorita, Data, Ora, Operatore) VALUES (:Priorita, :Data, :Ora, :Operatore)");
 
         $stmt->bindParam(':Operatore', $OperatoreSegnalazione);
         $stmt->bindParam(':Data', $Data);
         $stmt->bindParam(':Ora', $Ora);
         $stmt->bindParam(':Priorita', $Priorita);
+        if ($Targa && $OraDiArrivo) {
+            $stmt->bindParam(':Targa', $Targa);
+            $stmt->bindParam(':OraDiArrivo', $OraDiArrivo);
+        }
 
         if ($stmt->execute())
             $message = "Operazione completata con successo!";

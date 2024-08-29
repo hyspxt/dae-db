@@ -53,7 +53,7 @@ function getTableData($db, $table)
     <div class="navbar">
         <ul>
             <li><a href="../../index.html"><i class="fas fa-home"></i> Home</a></li>
-            <li><a href="sample.php" class="active"><i class="fas fa-info-circle"></i> Database </a></li>
+            <li><a href="db.php" class="active"><i class="fas fa-info-circle"></i> Database </a></li>
             <li><a href="services.php"><i class="fas fa-cogs"></i> Query </a></li>
         </ul>
     </div>
