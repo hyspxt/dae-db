@@ -65,7 +65,7 @@ $db->close();
             <form id="formQuery1" action="query.php" method="post" class="formQuery">
                 <input type="hidden" name="insertPaziente" value="1">
                 <label for="CodFiscale">Codice Fiscale:</label>
-                <input type="text" class="form-control" name="CodFiscale" id="CodFiscale" pattern="^[A-Z]{6}\d{2}[A-Z]\d{2}[A-Z]\d{3}[A-Z]$"required>
+                <input type="text" class="form-control" name="CodFiscale" id="CodFiscale" pattern="^[A-Z]{6}\d{2}[A-Z]\d{2}[A-Z]\d{3}[A-Z]$" required>
                 <label for="Nome">Nome:</label>
                 <input type="text" class="form-control" name="Nome" id="Nome" required>
                 <label for="Cognome">Cognome:</label>
@@ -111,9 +111,9 @@ $db->close();
                 <label for="Civico">Civico:</label>
                 <input type="number" class="form-control" name="Civico" id="Civico" required>
                 <label for="Cellulare">Cellulare:</label>
-                <input type="tel" class="form-control" name="Cellulare" id="Cellulare" required>
+                <input type="tel" class="form-control" name="Cellulare" id="Cellulare" pattern="(\+39)?[0-9]{10,11}" required>
                 <label for="Email">Email:</label>
-                <input type="email" class="form-control" name="Email" id="Email" required>
+                <input type="email" class="form-control" name="Email" id="Email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" required>
                 <label for="Certificato">Certificato:</label>
                 <input type="text" class="form-control" name="Certificato" id="Certificato" required>
                 <button id="button2" class="btn c" type="submit"> Inserisci un nuovo soccorritore </button>
@@ -182,9 +182,9 @@ $db->close();
             <form id="formQuery6" action="query.php" method="post" class="formQuery">
                 <input type="hidden" name="InsertChiamata" value="6">
                 <label for="PazienteChiamata">Paziente:</label>
-                <input type="text" class="form-control" name="PazienteChiamata" id="PazienteChiamata" required>
+                <input type="text" class="form-control" name="PazienteChiamata" id="PazienteChiamata" pattern="^[A-Z]{6}\d{2}[A-Z]\d{2}[A-Z]\d{3}[A-Z]$" title="codice fiscale" required>
                 <label for="OperatoreChiamata">Operatore:</label>
-                <input type="text" class="form-control" name="OperatoreChiamata" id="OperatoreChiamata" required>
+                <input type="text" class="form-control" name="OperatoreChiamata" id="OperatoreChiamata" pattern="^[A-Z]{6}\d{2}[A-Z]\d{2}[A-Z]\d{3}[A-Z]$" title="codice fiscale" required>
                 <label for="Data">Data:</label>
                 <input type="date" class="form-control" name="Data" id="Data" required>
                 <label for="Ora">Ora:</label>
@@ -204,13 +204,18 @@ $db->close();
             <form id="formQuery7" action="query.php" method="post" class="formQuery">
                 <input type="hidden" name="InsertSegnalazione" value="7">
                 <label for="OperatoreSegnalazione">Operatore:</label>
-                <input type="text" class="form-control" name="OperatoreSegnalazione" id="OperatoreSegnalazione" required>
+                <input type="text" class="form-control" name="OperatoreSegnalazione" id="OperatoreSegnalazione" pattern="^[A-Z]{6}\d{2}[A-Z]\d{2}[A-Z]\d{3}[A-Z]$" title="codice fiscale" required>
                 <label for="Data">Data:</label>
                 <input type="date" class="form-control" name="Data" id="Data" required>
                 <label for="Ora">Ora:</label>
                 <input type="time" class="form-control" name="Ora" id="Ora" required>
                 <label for="Priorita">Priorità:</label>
-                <input type="number" class="form-control" name="Priorita" id="Priorita" required>
+                <select class="form-control" name="Priorita" id="Priorita" required>
+                    <option value="0">Bassa</option>
+                    <option value="1">Media</option>
+                    <option value="2">Alta</option>
+                </select>
+
 
                 <label for="toggleFields">É richiesto un mezzo di soccorso?</label>
                 <input type="checkbox" id="toggleFields" onclick="toggleExtraFields()">
