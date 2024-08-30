@@ -58,6 +58,7 @@ $db->close();
                 <option value="14">Query 14</option>
                 <option value="15">Query 15</option>
                 <option value="16">Query 16</option>
+                <option value="17">Query 17</option>
             </select>
         </form>
         <div id="query1" class="queries">
@@ -346,6 +347,20 @@ $db->close();
                 <button id="button16" class="btn c" type="submit">Visualizza manovre di soccorso</button>
             </form>
             <div id="table16" class="card m-5">
+                <div class="card-body"></div>
+            </div>
+        </div>
+
+        <div id="query17" class="queries">
+            <h3>Report sulle manovre di soccorso</h3>
+            <p>selezionare una tipologia di manovra di<br>soccorso per visualizzare quelle eseguite</p>
+            <form id="formQuery17" action="query.php" method="post" class="formQuery">
+                <input type="hidden" name="query" value="17">
+                <label for="Tipologia">Tipologia:</label>
+                <input type="text" class="form-control" name="Tipologia" id="Tipologia" required>
+                <button id="button17" class="btn c" type="submit">Visualizza manovre di soccorso</button>
+            </form>
+            <div id="table17" class="card m-5">
                 <div class="card-body"></div>
             </div>
         </div>

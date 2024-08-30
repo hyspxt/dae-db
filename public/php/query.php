@@ -28,7 +28,7 @@ if (isset($_POST['insertPaziente'])) {
             $message = "Errore nell'inserimento del paziente!";
 
         echo "<script type='text/javascript'>alert('$message'); window.location.href = 'services.php';</script>";
-    }      
+    }
 }
 
 // Esecuzione inserimento di un nuovo soccoritore
@@ -45,7 +45,7 @@ if (isset($_POST['InsertSoccoritore'])) {
     $Email = $_POST['Email'];
     $Certificato = $_POST['Certificato'];
 
-    if($CodFiscale && $Nome && $Cognome && $Sesso && $Eta && $CAP && $Via && $Civico && $Cellulare && $Email && $Certificato) {
+    if ($CodFiscale && $Nome && $Cognome && $Sesso && $Eta && $CAP && $Via && $Civico && $Cellulare && $Email && $Certificato) {
         $stmt = $db->prepare("INSERT INTO Soccorritore (CodFiscale, Nome, Cognome, Sesso, Eta, CAP, Via, Civico, Cellulare, Email, Certificato) VALUES (:CodFiscale, :Nome, :Cognome, :Sesso, :Eta, :CAP, :Via, :Civico, :Cellulare, :Email, :Certificato)");
 
         $stmt->bindParam(':CodFiscale', $CodFiscale);
@@ -64,7 +64,7 @@ if (isset($_POST['InsertSoccoritore'])) {
             $message = "Operazione completata con successo!";
         else
             $message = "Errore nell'inserimento del soccorritore!";
-        
+
         echo "<script type='text/javascript'>alert('$message'); window.location.href = 'services.php';</script>";
     }
 }
@@ -78,7 +78,7 @@ if (isset($_POST['InsertOperatore'])) {
     $Eta = $_POST['EtaO'];
     $LineaTel = $_POST['LineaTel'];
 
-    if($CodFiscale && $Nome && $Cognome && $Sesso && $Eta && $LineaTel) {
+    if ($CodFiscale && $Nome && $Cognome && $Sesso && $Eta && $LineaTel) {
         $stmt = $db->prepare("INSERT INTO Operatore (CodFiscale, Nome, Cognome, Sesso, Eta, LineaTel) VALUES (:CodFiscale, :Nome, :Cognome, :Sesso, :Eta, :LineaTel)");
 
         $stmt->bindParam(':CodFiscale', $CodFiscale);
@@ -102,7 +102,7 @@ if (isset($_POST['InsertMezzoSoccorso'])) {
     $Targa = $_POST['Targa'];
     $Fornitore = $_POST['Fornitore'];
 
-    if($Targa && $Fornitore) {
+    if ($Targa && $Fornitore) {
         $stmt = $db->prepare("INSERT INTO MezzoDiSoccorso (Targa, Fornitore) VALUES (:Targa, :Fornitore)");
 
         $stmt->bindParam(':Targa', $Targa);
@@ -126,7 +126,7 @@ if (isset($_POST['InsertStrumentoSoccorso'])) {
     $Civico = $_POST['Civico'];
     $Revisione = $_POST['Revisione'];
 
-    if($ID && $Tipologia && $CAP && $Via && $Civico && $Revisione) {
+    if ($ID && $Tipologia && $CAP && $Via && $Civico && $Revisione) {
         $stmt = $db->prepare("INSERT INTO DispositivoMedico (ID, Tipologia, CAP, Via, Civico, Revisione) VALUES (:ID, :Tipologia, :CAP, :Via, :Civico, :Revisione)");
 
         $stmt->bindParam(':ID', $ID);
@@ -155,7 +155,7 @@ if (isset($_POST['InsertChiamata'])) {
     $Via = $_POST['Via'];
     $Civico = $_POST['Civico'];
 
-    if($PazienteChiamata && $OperatoreChiamata && $Data && $Ora && $CAP && $Via && $Civico) {
+    if ($PazienteChiamata && $OperatoreChiamata && $Data && $Ora && $CAP && $Via && $Civico) {
         $stmt = $db->prepare("INSERT INTO Chiamata (Paziente, Operatore, Data, Ora, CAP, Via, Civico) VALUES (:Paziente, :Operatore, :Data, :Ora, :CAP, :Via, :Civico)");
 
         $stmt->bindParam(':Paziente', $PazienteChiamata);
@@ -185,10 +185,10 @@ if (isset($_POST['InsertSegnalazione'])) {
     $OraDiArrivo = $_POST['OraDiArrivo'];
 
 
-    if($OperatoreSegnalazione && $Data && $Ora && $Priorita) {
+    if ($OperatoreSegnalazione && $Data && $Ora && $Priorita) {
         if ($Targa && $OraDiArrivo)
             $stmt = $db->prepare("INSERT INTO Segnalazione (Priorita, Data, Ora, Operatore, Mezzo, OraDiArrivo) VALUES (:Priorita, :Data, :Ora, :Operatore, :Targa, :OraDiArrivo)");
-        else 
+        else
             $stmt = $db->prepare("INSERT INTO Segnalazione (Priorita, Data, Ora, Operatore) VALUES (:Priorita, :Data, :Ora, :Operatore)");
 
         $stmt->bindParam(':Operatore', $OperatoreSegnalazione);
@@ -215,7 +215,7 @@ if (isset($_POST['InsertManovraSoccorso'])) {
     $Tipologia = $_POST['Tipologia'];
     $cIdentificativo = $_POST['cIdentificativo'];
 
-    if($PazienteManovra && $Tipologia && $cIdentificativo) {
+    if ($PazienteManovra && $Tipologia && $cIdentificativo) {
         $stmt = $db->prepare("INSERT INTO ManovraDiSoccorso (Paziente, Tipologia, Id) VALUES (:Paziente, :Tipologia, :cIdentificativo)");
 
         $stmt->bindParam(':Paziente', $PazienteManovra);
@@ -253,7 +253,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['query'])) {
             $query = "SELECT * FROM Chiamata WHERE Data = '$Data'";
             $tableName = "table10";
             break;
-        
+
         case 11:
             $dataOdierna = date('Y-m-d');
             $query = "SELECT * FROM DispositivoMedico WHERE (julianday('$dataOdierna') - julianday(Revisione)) >= 730";
@@ -286,6 +286,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['query'])) {
             $tableName = "table16";
             break;
 
+        case 17:
+            $Tipologia = $_POST['Tipologia'];
+            // $query = "SELECT MS.ID AS ManovraID,
+            //             MS.Tipologia AS TipoManovra,
+            //             DM.ID AS DispositivoID,
+            //             DM.Tipologia AS TipoDispositivo,
+            //             DM.Revisione AS RevisioneDispositivo,
+            //             S.Nome AS SoccorritoreNome,
+            //             S.Cognome AS SoccorritoreCognome,
+            //             E.Stato AS StatoEsecuzione
+            //           FROM
+            //             ManovraDiSoccorso MS
+            //             LEFT JOIN Impiego I ON MS.ID = I.Manovra
+            //             LEFT JOIN DispositivoMedico DM ON I.Dispositivo = DM.ID
+            //             LEFT JOIN Esecuzione E ON MS.ID = E.Manovra
+            //             LEFT JOIN Soccorritore S ON E.Soccorritore = S.CodFiscale
+            //           WHERE
+            //             MS.Tipologia = '$Tipologia'
+            //           ORDER BY
+            //             MS.ID, DM.ID, S.Cognome;";
+            $query = "SELECT * FROM ManovraDiSoccorso WHERE Tipologia = '$Tipologia'";
+            $tableName = "table17";
+            break;
+
         default:
             echo "Invalid query parameter.";
             break;
@@ -295,7 +319,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['query'])) {
 }
 
 // Stampa la query
-function printTable($result, $tableName){
+function printTable($result, $tableName)
+{
     if (empty($result)) {
         echo "Nessun dato trovato nella tabella.";
     } else {
@@ -319,7 +344,8 @@ function printTable($result, $tableName){
 }
 
 // Esegue la query e restituisce i risultati
-function getResult($query){
+function getResult($query)
+{
     global $db;
 
     $result = $db->query($query);
@@ -333,4 +359,3 @@ function getResult($query){
 
 // Chiude la connessione al database
 $db->close();
-?>
