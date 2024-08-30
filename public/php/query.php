@@ -261,7 +261,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['query'])) {
             break;
 
         case 12:
-            $query = "  SELECT S.Nome AS 'Soccorritore', P.Nome AS 'Paziente', M.Tipologia AS 'Manovra' 
+            $query = "  SELECT S.Nome AS 'Soccorritore', S.Cognome AS 'CognomeSocc', P.Nome AS 'Paziente', M.Tipologia AS 'Manovra' 
                         FROM Soccorritore as S, Paziente as P, ManovraDiSoccorso as M, Esecuzione as E 
                         WHERE S.CodFiscale = E.Soccorritore AND E.Manovra = M.ID AND M.Paziente = P.CodFiscale";
             $tableName = "table12";
@@ -288,13 +288,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['query'])) {
 
         case 17:
             $Tipologia = $_POST['Tipologia'];
-            $query = "SELECT MS.ID AS ManovraID,
-                        MS.Tipologia AS TipoManovra,
-                        DM.ID AS DispositivoID,
-                        DM.Tipologia AS TipoDispositivo,
-                        DM.Revisione AS RevisioneDispositivo,
-                        S.Nome AS SoccorritoreNome,
-                        S.Cognome AS SoccorritoreCognome,
+            $query = "SELECT MS.ID AS IdManovra,
+                        MS.Tipologia AS TipologiaManovra,
+                        DM.ID AS IdDispositivo,
+                        DM.Tipologia AS Tipologia,
+                        DM.Revisione AS Revisione,
+                        S.Nome AS NomeSoccorritore,
+                        S.Cognome AS CognomeSoccorritore,
                         E.Stato AS StatoEsecuzione
                       FROM
                         ManovraDiSoccorso MS
