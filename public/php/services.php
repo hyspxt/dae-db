@@ -219,7 +219,7 @@ $db->close();
 
 
                 <label for="toggleFields">É richiesto un mezzo di soccorso?</label>
-                <input type="checkbox" id="toggleFields" name="toggleFields" onclick="toggleExtraFields()">
+                <input type="checkbox" id="toggleFields" onclick="toggleExtraFields()">
 
                 <div id="extraFields" style="display: none;">
                     <label for="TargaMezzo">Targa Mezzo:</label>
@@ -353,7 +353,7 @@ $db->close();
 
         <div id="query17" class="queries">
             <h3>Report sulle manovre di soccorso</h3>
-            <p>selezionare una tipologia di manovra di<br>soccorso per visualizzare i report di quelle eseguite</p>
+            <p>selezionare una tipologia di manovra di<br>soccorso per visualizzare quelle eseguite</p>
             <form id="formQuery17" action="query.php" method="post" class="formQuery">
                 <input type="hidden" name="query" value="17">
                 <label for="Tipologia">Tipologia:</label>
