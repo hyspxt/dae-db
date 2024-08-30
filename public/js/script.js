@@ -129,4 +129,15 @@ document.addEventListener('DOMContentLoaded', function() {
     setupQuery('button13', 'formQuery13', 'table13');
     setupQuery('button15', 'formQuery15', 'table15');
     setupQuery('button16', 'formQuery16', 'table16');
+    setupQuery('button17', 'formQuery17', 'table17');
 });
+
+function toggleExtraFields() {
+    var checkBox = document.getElementById("toggleFields");
+    var extraFields = document.getElementById("extraFields");
+    
+    if (checkBox.checked)
+        extraFields.style.display = "block";
+    else
+        extraFields.style.display = "none";
+}
