@@ -181,21 +181,21 @@ if (isset($_POST['InsertSegnalazione'])) {
     $Data = $_POST['Data'];
     $Ora = $_POST['Ora'];
     $Priorita = $_POST['Priorita'];
-    $Targa = $_POST['TargaMezzo'];
-    $OraDiArrivo = $_POST['OraDiArrivo'];
-
+    $Targa = isset($_POST['TargaMezzo']) ? $_POST['TargaMezzo'] : null;
+    $OraDiArrivo = isset($_POST['OraDiArrivo']) ? $_POST['OraDiArrivo'] : null;
 
     if ($OperatoreSegnalazione && $Data && $Ora && $Priorita) {
-        if ($Targa && $OraDiArrivo)
+        if (isset($_POST['toggleFields'])){
             $stmt = $db->prepare("INSERT INTO Segnalazione (Priorita, Data, Ora, Operatore, Mezzo, OraDiArrivo) VALUES (:Priorita, :Data, :Ora, :Operatore, :Targa, :OraDiArrivo)");
-        else
+        }
+        else{
             $stmt = $db->prepare("INSERT INTO Segnalazione (Priorita, Data, Ora, Operatore) VALUES (:Priorita, :Data, :Ora, :Operatore)");
-
+        }
         $stmt->bindParam(':Operatore', $OperatoreSegnalazione);
         $stmt->bindParam(':Data', $Data);
         $stmt->bindParam(':Ora', $Ora);
         $stmt->bindParam(':Priorita', $Priorita);
-        if ($Targa && $OraDiArrivo) {
+        if (isset($_POST['toggleFields'])) {
             $stmt->bindParam(':Targa', $Targa);
             $stmt->bindParam(':OraDiArrivo', $OraDiArrivo);
         }
@@ -204,9 +204,9 @@ if (isset($_POST['InsertSegnalazione'])) {
             $message = "Operazione completata con successo!";
         else
             $message = "Errore nell'inserimento della segnalazione!";
-
         echo "<script type='text/javascript'>alert('$message'); window.location.href = 'services.php';</script>";
     }
+    
 }
 
 //inserisci una nuova manovra di soccorso
