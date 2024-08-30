@@ -129,6 +129,7 @@ document.addEventListener('DOMContentLoaded', function() {
     setupQuery('button13', 'formQuery13', 'table13');
     setupQuery('button15', 'formQuery15', 'table15');
     setupQuery('button16', 'formQuery16', 'table16');
+    setupQuery('button17', 'formQuery17', 'table17');
 });
 
 function toggleExtraFields() {

@@ -288,25 +288,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['query'])) {
 
         case 17:
             $Tipologia = $_POST['Tipologia'];
-            // $query = "SELECT MS.ID AS ManovraID,
-            //             MS.Tipologia AS TipoManovra,
-            //             DM.ID AS DispositivoID,
-            //             DM.Tipologia AS TipoDispositivo,
-            //             DM.Revisione AS RevisioneDispositivo,
-            //             S.Nome AS SoccorritoreNome,
-            //             S.Cognome AS SoccorritoreCognome,
-            //             E.Stato AS StatoEsecuzione
-            //           FROM
-            //             ManovraDiSoccorso MS
-            //             LEFT JOIN Impiego I ON MS.ID = I.Manovra
-            //             LEFT JOIN DispositivoMedico DM ON I.Dispositivo = DM.ID
-            //             LEFT JOIN Esecuzione E ON MS.ID = E.Manovra
-            //             LEFT JOIN Soccorritore S ON E.Soccorritore = S.CodFiscale
-            //           WHERE
-            //             MS.Tipologia = '$Tipologia'
-            //           ORDER BY
-            //             MS.ID, DM.ID, S.Cognome;";
-            $query = "SELECT * FROM ManovraDiSoccorso WHERE Tipologia = '$Tipologia'";
+            $query = "SELECT MS.ID AS ManovraID,
+                        MS.Tipologia AS TipoManovra,
+                        DM.ID AS DispositivoID,
+                        DM.Tipologia AS TipoDispositivo,
+                        DM.Revisione AS RevisioneDispositivo,
+                        S.Nome AS SoccorritoreNome,
+                        S.Cognome AS SoccorritoreCognome,
+                        E.Stato AS StatoEsecuzione
+                      FROM
+                        ManovraDiSoccorso MS
+                        LEFT JOIN Impiego I ON MS.ID = I.Manovra
+                        LEFT JOIN DispositivoMedico DM ON I.Dispositivo = DM.ID
+                        LEFT JOIN Esecuzione E ON MS.ID = E.Manovra
+                        LEFT JOIN Soccorritore S ON E.Soccorritore = S.CodFiscale
+                      WHERE
+                        MS.Tipologia = '$Tipologia'
+                      ORDER BY
+                        MS.ID, DM.ID, S.Cognome;";
             $tableName = "table17";
             break;
 
